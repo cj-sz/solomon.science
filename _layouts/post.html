@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <!-- Breadcrumb navigation showing nested categories -->
+    <div class="post-breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="sep">›</span>
+      <a href="{{ '/blog' | relative_url }}">Blog</a>
+      {% if page.categories.size > 0 %}
+        {% for cat in page.categories %}
+          <span class="sep">›</span>
+          <a href="{{ '/blog' | relative_url }}?category={{ cat | downcase }}">{{ cat }}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+    
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <span>{{ page.date | date: "%B %d, %Y" }}</span>
+      {% if page.author %}
+        <span>{{ page.author }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div style="margin-top: 25px;">
+    <a href="{{ '/blog' | relative_url }}" class="btn">← Back to Blog</a>
+  </div>
+</article>

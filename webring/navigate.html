@@ -1,0 +1,53 @@
+---
+layout: null
+permalink: /webring/navigate
+---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Webring Navigation</title>
+</head>
+<body>
+  <script>
+    // Webring navigation handler
+    // URL format: /webring/navigate?from=SITE_ID&dir=next|prev|random
+    
+    const sites = [
+      { id: "solomon", url: "https://solomon.science" },
+      { id: "friend1", url: "https://example-friend1.com" },
+      { id: "friend2", url: "https://example-friend2.com" },
+      { id: "friend3", url: "https://example-friend3.com" }
+    ];
+    
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+    const dir = params.get('dir') || 'next';
+    
+    // Find current site index
+    let currentIndex = sites.findIndex(s => s.id === from);
+    if (currentIndex === -1) currentIndex = 0;
+    
+    let targetIndex;
+    
+    if (dir === 'random') {
+      // Random but not current site
+      do {
+        targetIndex = Math.floor(Math.random() * sites.length);
+      } while (targetIndex === currentIndex && sites.length > 1);
+    } else if (dir === 'prev') {
+      targetIndex = (currentIndex - 1 + sites.length) % sites.length;
+    } else {
+      // next
+      targetIndex = (currentIndex + 1) % sites.length;
+    }
+    
+    window.location.href = sites[targetIndex].url;
+  </script>
+  <noscript>
+    <p>JavaScript is required for webring navigation.</p>
+    <p><a href="https://solomon.science/webring/">View the webring directory</a></p>
+  </noscript>
+</body>
+</html>
+

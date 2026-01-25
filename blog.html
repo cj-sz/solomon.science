@@ -1,0 +1,39 @@
+---
+layout: default
+title: Blog
+---
+
+<div class="tech-section" style="margin-top: 0;">
+  <h2>Blog</h2>
+</div>
+
+<!-- Blog Posts List -->
+<div class="blog-list">
+  {% for post in site.posts %}
+  <div class="blog-list-item">
+    <!-- Breadcrumb showing nested categories -->
+    {% if post.categories.size > 0 %}
+    <div class="blog-item-breadcrumb">
+      {% for cat in post.categories %}{{ cat }}{% unless forloop.last %}<span class="sep">›</span>{% endunless %}{% endfor %}
+    </div>
+    {% endif %}
+    
+    <h3 class="blog-item-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h3>
+    <p class="blog-item-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+    <div class="blog-item-meta">
+      {{ post.date | date: "%Y-%m-%d" }}
+    </div>
+  </div>
+  {% endfor %}
+
+  {% if site.posts.size == 0 %}
+  <div class="blog-list-item">
+    <h3 class="blog-item-title">No posts yet</h3>
+    <p class="blog-item-excerpt">
+      Check back soon for updates.
+    </p>
+  </div>
+  {% endif %}
+</div>

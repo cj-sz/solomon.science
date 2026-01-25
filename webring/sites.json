@@ -1,0 +1,30 @@
+{
+  "name": "TODO name",
+  "description": "TODO desc.",
+  "sites": [
+    {
+      "id": "solomon",
+      "name": "solomon.science",
+      "url": "https://solomon.science",
+      "owner": "Caleb Solomon"
+    },
+    {
+      "id": "friend1",
+      "name": "Friend's Site",
+      "url": "https://example-friend1.com",
+      "owner": "Friend One"
+    },
+    {
+      "id": "friend2",
+      "name": "Another Friend",
+      "url": "https://example-friend2.com",
+      "owner": "Friend Two"
+    },
+    {
+      "id": "friend3",
+      "name": "Cool Site",
+      "url": "https://example-friend3.com",
+      "owner": "Friend Three"
+    }
+  ]
+}

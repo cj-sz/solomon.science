@@ -1,0 +1,33 @@
+# Site settings
+title: solomon.science
+description: Personal website and blog
+url: "https://solomon.science"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Permalinks
+permalink: /blog/:year/:month/:day/:title/
+
+# Collections for organizing blog posts by topic
+collections:
+  posts:
+    output: true
+    permalink: /blog/:categories/:title/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore

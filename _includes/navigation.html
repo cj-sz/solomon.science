@@ -1,0 +1,49 @@
+<nav class="menubar">
+  <div class="menu-item">
+    <span>Home</span>
+    <div class="dropdown">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <div class="dropdown-divider"></div>
+      <a href="{{ '/#research' | relative_url }}">Research</a>
+      <a href="{{ '/#projects' | relative_url }}">Projects</a>
+      <a href="{{ '/#mods' | relative_url }}">Game Mods</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <span>Blog</span>
+    <div class="dropdown">
+      <a href="{{ '/blog' | relative_url }}">All Posts</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <span>Projects</span>
+    <div class="dropdown">
+      <a href="{{ '/#projects' | relative_url }}">All Projects</a>
+      <div class="dropdown-divider"></div>
+      <a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a>
+      <a href="#">Racket Compiler</a>
+      <a href="https://github.com/cj-sz/league-tool">League Tool</a>
+      <div class="dropdown-divider"></div>
+      <div class="submenu-trigger">
+        Game Mods
+        <div class="submenu">
+          <a href="#">Factorio Mods</a>
+          <a href="#">Startup Company Mods</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <span>Links</span>
+    <div class="dropdown">
+      <a href="https://github.com/cj-sz">GitHub</a>
+      <a href="https://linkedin.com/in/calebjsolomon">LinkedIn</a>
+      <div class="dropdown-divider"></div>
+      <a href="{{ '/webring/' | relative_url }}">Webring</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
