@@ -21,16 +21,16 @@ title: Home
           </p>
           <p>
             Professionally, I'm interested in systems and low-level programming, compilers, and 
-            the intersection of computation and cognition. I am currently working on language processing research under
-            <a href="https://sites.google.com/view/www-jjpurcell-com/home/about-me">Dr. Jeremy Purcell</a>, and lead development
+            the intersection of computation and cognition. I am currently working on language processing research at UMD in  
+            <a href="https://sites.google.com/view/www-jjpurcell-com/home/about-me">Dr. Jeremy Purcell's</a> lab, where I lead development
             on an upcoming open source package for lexical analysis. I previously interned as an AI Engineer for ScaleAI designing automated
             LLM output evaluation pipelines.
           </p>
           <p>
-            I'm currently learning Japanese and love to travel (so far, 10 countries across 3 continents). In my spare time I enjoy reading (mostly sci-fi and fantasy), game programming, and training.
+            I'm currently learning Japanese and love to travel (so far, 11 countries across 3 continents). In my spare time I enjoy reading (mostly sci-fi and fantasy), game design, and training.
           </p>
           <p>
-            This site is currently a <b>work-in-progress</b>, but you can read about all of this and more using the links on this page.
+            This site is currently a <b>work-in-progress</b>.
           </p>
         </div>
         
@@ -38,7 +38,7 @@ title: Home
         <div class="profile-links">
           <a href="https://github.com/cj-sz" class="profile-link">GitHub</a>
           <a href="https://linkedin.com/in/calebjsolomon" class="profile-link">LinkedIn</a>
-          <a href="#contact" class="profile-link">Contact</a>
+          <a href="{{ '/contact' | relative_url }}" class="profile-link">Contact</a>
         </div>
       </div>
     </div>
@@ -49,15 +49,10 @@ title: Home
       <div class="tech-list">
         
         <div class="tech-list-item">
-          <span class="index">01</span>
-          <div>
-            <span class="title"><a href="#">Neural Tuning of Reading Lab</a></span>
-            <span class="tags"> :: Python, R, MATLAB</span>
-            <div class="description">
-              Leading undergraduate research under Dr. Jeremy Purcell, developing the Sublexical Toolkit — 
-              an open source language analysis package. Presented at the 2023 Society for Neuroscience conference 
-              on the NTR Orthogonalization Library. Refactored backend from R to Python and scaled dataset to 40,000+ words.
-            </div>
+          <span class="title"><a href="{{ '/research/neural-tuning-of-reading' | relative_url }}">Neural Tuning of Reading Lab</a></span>
+          <span class="tags"> :: Python, R, MATLAB</span>
+          <div class="description">
+            Currently leading software development in Dr. Jeremy Purcell's lab for the Sublexical Toolkit, an upcoming open source language analysis package. Some of my most impactful technical contributions include automated data collection, validation, and preprocessing pipelines (used to scale the dataset from 20,000 to 40,000+ words), ongoing backend refactoring from R to Python, and running technical analyses for upcoming publications.
           </div>
         </div>
 
@@ -70,55 +65,39 @@ title: Home
       <div class="tech-list">
         
         <div class="tech-list-item">
-          <span class="index">01</span>
-          <div>
-            <span class="title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
-            <span class="tags"> :: Unity, C#</span>
-            <div class="description">Turn-based card battler combat system with complex character interactions, built using C# Events and Delegates under an object-oriented design paradigm.</div>
-          </div>
+          <span class="title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
+          <span class="tags"> :: Unity, C#</span>
+          <div class="description">My current game development project, a turn-based 5v5 card battler featuring an intricate combat system and dynamic character interactions. I'll be documenting my progress here through devlogs as I build.</div>
         </div>
 
         <div class="tech-list-item">
-          <span class="index">02</span>
-          <div>
-            <span class="title"><a href="#">Racket Compiler</a></span>
-            <span class="tags"> :: Racket, x86 Assembly</span>
-            <div class="description">Interpreter and compiler for a subset of the Racket language, targeting x86 assembly to support core language features and execution.</div>
-          </div>
+          <span class="title"><a href="{{ '/projects/racket-compiler' | relative_url }}">Racket Compiler</a></span>
+          <span class="tags"> :: Racket, x86 Assembly</span>
+          <div class="description">Interpreter and compiler written in Racket supporting a subset of the Racket language features, targeting x86 assembly. Built for my undergraduate compilers course (CMSC430). I can't share the code publicly, but can provide access upon request.</div>
         </div>
 
         <div class="tech-list-item">
-          <span class="index">03</span>
-          <div>
-            <span class="title"><a href="https://github.com/cj-sz/league-tool">League Tool</a></span>
-            <span class="tags"> :: Rust, CLI</span>
-            <div class="description">Command-line application implementing a custom team ranking algorithm with efficient data handling and safe systems programming practices.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Game Mods Section -->
-    <div id="mods" class="tech-section">
-      <h2>Game Mods</h2>
-      <div class="tech-list">
-        
-        <div class="tech-list-item">
-          <span class="index">01</span>
-          <div>
-            <span class="title"><a href="#">Factorio Mods</a></span>
-            <span class="tags"> :: Lua</span>
-            <div class="description">Suite of mods introducing over a dozen new research options and gameplay features. 10,000+ downloads.</div>
-          </div>
-        </div>
-
-        <div class="tech-list-item">
-          <span class="index">02</span>
-          <div>
-            <span class="title"><a href="#">Startup Company Mods</a></span>
-            <span class="tags"> :: JavaScript</span>
-            <div class="description">Six mods implementing various balancing and gameplay overhauls for the 2020 business simulation game. 1,000+ downloads.</div>
+          <span class="title"><a href="{{ '/projects/game-mods' | relative_url }}">Game Mods</a></span>
+          <span class="tags"> :: Lua, JavaScript</span>
+          <div class="description">I've developed several mods for the games Factorio and Startup Company, written in Lua and JavaScript, respectively.</div>
+          <div class="mod-home-list">
+            <div class="mod-home-item">
+              <span class="mod-game">(Factorio)</span>
+              <span class="mod-name">CJ's QoL Research</span>
+              <a href="https://mods.factorio.com/mod/CJs_QoL_Research_Ver1" class="mod-link" target="_blank">link</a>
+              <span class="mod-downloads">50,000+ downloads</span>
+            </div>
+            <div class="mod-home-item">
+              <span class="mod-game">(Factorio)</span>
+              <span class="mod-name">CJ's Infinite Ores</span>
+              <a href="https://mods.factorio.com/mod/CJsInfiniteOres" class="mod-link" target="_blank">link</a>
+              <span class="mod-downloads">5,000+ downloads</span>
+            </div>
+            <div class="mod-home-item">
+              <span class="mod-game">(Startup Company)</span>
+              <span class="mod-name">Boss Suite (modpack)</span>
+              <a href="https://github.com/cj-sz/BossSuite" class="mod-link" target="_blank">link</a>
+            </div>
           </div>
         </div>
 
@@ -140,19 +119,19 @@ title: Home
             {% for cat in post.categories %}{{ cat }}{% unless forloop.last %}<span class="sep">›</span>{% endunless %}{% endfor %}
           </div>
           {% endif %}
-          <div class="sidebar-item-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </div>
-          <div class="sidebar-item-meta">
-            {{ post.date | date: "%Y-%m-%d" }}
+          <div class="sidebar-item-row">
+            <div class="sidebar-item-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
+            <div class="sidebar-item-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
           </div>
         </div>
         {% endfor %}
 
         {% if site.posts.size == 0 %}
         <div class="sidebar-item">
-          <div class="sidebar-item-title">No posts yet</div>
-          <div class="sidebar-item-meta">Check back soon</div>
+          <div class="sidebar-item-row">
+            <div class="sidebar-item-meta">—</div>
+            <div class="sidebar-item-title">No posts yet</div>
+          </div>
         </div>
         {% endif %}
         

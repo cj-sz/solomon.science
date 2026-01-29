@@ -17,10 +17,10 @@
   --border-dark: #141515;
   --border-mid: #323334;
   
-  /* Text - simple hierarchy */
-  --text-primary: #e0e0e0;
-  --text-secondary: #909090;
-  --text-muted: #606060;
+  /* Text - simple hierarchy (high contrast) */
+  --text-primary: #ffffff;
+  --text-secondary: #d0d0d0;
+  --text-muted: #a0a0a0;
   
   /* Single accent color - soft teal */
   --accent: #5fb4b4;
@@ -84,9 +84,9 @@ body {
   background: linear-gradient(180deg, var(--titlebar) 0%, #161718 100%);
   border-bottom: 1px solid var(--border-mid);
   color: var(--titlebar-text);
-  padding: 10px 14px;
+  padding: 6px 12px;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,74 +114,126 @@ body {
 }
 
 /* ============================================
-   NAVIGATION / MENUBAR
+   NAVIGATION / MENUBAR - Early 2000s UI Style
    ============================================ */
 
 .menubar {
-  background: linear-gradient(180deg, var(--bg-panel) 0%, #262728 100%);
+  background: linear-gradient(180deg, #3a3b3c 0%, #2a2b2c 40%, #232425 100%);
   padding: 0;
-  border-bottom: 1px solid var(--border-mid);
+  border-top: 1px solid #4a4b4c;
+  border-bottom: 1px solid #1a1b1c;
   display: flex;
   gap: 0;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
 }
 
 .menu-item {
   position: relative;
-  padding: 10px 18px;
-  cursor: default;
+  padding: 0;
   font-size: 12px;
   font-weight: 400;
   color: var(--text-secondary);
-  transition: all 0.15s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-decoration: none;
 }
 
-.menu-item:hover {
-  background: var(--bg-inset);
-  color: var(--text-primary);
+.menu-item.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+  transition: none;
 }
 
+.menu-item.menu-link:first-child {
+  border-left: none;
+}
+
+.menu-item.menu-link:hover,
+.menu-item.has-dropdown:hover {
+  background: linear-gradient(180deg, #2a2b2c 0%, #1e1f20 100%);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.menu-item.menu-link:hover {
+  color: var(--accent);
+}
+
+.menu-item.has-dropdown .menu-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+  transition: none;
+}
+
+.menu-item.has-dropdown:hover .menu-link {
+  color: var(--accent);
+}
+
+/* Dropdown - Instant appearance */
 .dropdown {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: var(--bg-panel);
-  border: 1px solid var(--border-mid);
+  background: linear-gradient(180deg, #323334 0%, #282929 100%);
+  border: 1px solid #1a1b1c;
+  border-top: 1px solid #4a4b4c;
   min-width: 220px;
   z-index: 1000;
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.5),
-    0 0 0 1px var(--border-dark),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    2px 3px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.menu-item:hover > .dropdown {
+.menu-item.has-dropdown:hover > .dropdown {
   display: block;
 }
 
 .dropdown a,
 .dropdown .submenu-trigger {
   display: block;
-  padding: 10px 20px;
+  padding: 6px 16px;
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 11px;
   font-weight: 400;
-  transition: all 0.1s ease;
+  transition: none;
   position: relative;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.dropdown a:first-child,
+.dropdown .submenu-trigger:first-child {
+  border-top: none;
+}
+
+.dropdown a:last-child {
+  border-bottom: none;
 }
 
 .dropdown a:hover,
 .dropdown .submenu-trigger:hover {
-  background: var(--bg-inset);
-  color: var(--text-primary);
+  background: linear-gradient(180deg, #1e1f20 0%, #1a1b1c 100%);
+  color: var(--accent);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 /* Nested submenu styling */
@@ -190,28 +242,29 @@ body {
 }
 
 .submenu-trigger::after {
-  content: "›";
+  content: "▸";
   position: absolute;
-  right: 15px;
+  right: 12px;
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .submenu-trigger:hover::after {
-  color: var(--text-secondary);
+  color: var(--accent);
 }
 
 .submenu {
   display: none;
   position: absolute;
   left: 100%;
-  top: 0;
-  background: var(--bg-panel);
-  border: 1px solid var(--border-mid);
+  top: -1px;
+  background: linear-gradient(180deg, #323334 0%, #282929 100%);
+  border: 1px solid #1a1b1c;
+  border-left: 1px solid #4a4b4c;
   min-width: 200px;
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.5),
-    0 0 0 1px var(--border-dark);
+    2px 3px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .submenu-trigger:hover > .submenu {
@@ -219,13 +272,14 @@ body {
 }
 
 .submenu a {
-  padding: 10px 20px;
+  padding: 6px 16px;
 }
 
 .dropdown-divider {
   height: 1px;
-  background: var(--border-mid);
-  margin: 6px 12px;
+  background: linear-gradient(90deg, transparent 0%, #1a1b1c 10%, #1a1b1c 90%, transparent 100%);
+  margin: 4px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 /* ============================================
@@ -351,7 +405,7 @@ body {
 }
 
 .about-inline p {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
   line-height: 1.7;
   margin-bottom: 12px;
@@ -436,7 +490,7 @@ body {
    ============================================ */
 
 .tech-section {
-  margin: 30px 0;
+  margin: 18px 0;
 }
 
 .tech-section:first-of-type {
@@ -444,10 +498,10 @@ body {
 }
 
 .tech-section h2 {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  margin-bottom: 15px;
-  padding-bottom: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--border-mid);
   color: var(--text-primary);
   text-transform: uppercase;
@@ -456,19 +510,16 @@ body {
 }
 
 .tech-list {
-  background: var(--bg-inset);
+  background: var(--bg-panel);
   border: 1px solid var(--border-mid);
   font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
   font-size: 13px;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tech-list-item {
-  padding: 12px 16px;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--border-mid);
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
+  display: block;
   transition: background 0.1s ease;
 }
 
@@ -480,14 +531,8 @@ body {
   background: rgba(255, 255, 255, 0.02);
 }
 
-.tech-list-item .index {
-  color: var(--text-muted);
-  font-size: 11px;
-  min-width: 24px;
-}
-
 .tech-list-item .title {
-  flex-grow: 1;
+  display: inline;
 }
 
 .tech-list-item .title a {
@@ -502,7 +547,7 @@ body {
 
 .tech-list-item .meta {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 10px;
   text-align: right;
 }
 
@@ -513,11 +558,129 @@ body {
 
 .tech-list-item .description {
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 13px;
   font-family: "Segoe UI", sans-serif;
   font-weight: 300;
+  margin-top: 3px;
+  margin-left: 16px;
+  line-height: 1.6;
+}
+
+/* Mod links styling */
+.mod-links {
   margin-top: 4px;
-  padding-left: 36px;
+  font-size: 10px;
+}
+
+.mod-links a.github-link {
+  color: var(--accent);
+  text-decoration: none;
+  margin-right: 8px;
+}
+
+.mod-links a.github-link:hover {
+  color: var(--accent-hover);
+}
+
+.mod-links a.factorio-link {
+  color: #f5a623;
+  text-decoration: none;
+  margin-right: 8px;
+}
+
+.mod-links a.factorio-link:hover {
+  color: #ffc04d;
+}
+
+.mod-subitem {
+  margin-top: 6px;
+  padding-left: 12px;
+  border-left: 2px solid var(--border-mid);
+}
+
+.mod-subitem .mod-title {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.mod-subitem .mod-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Game link colors */
+a.game-link-orange {
+  color: #f5a623;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+a.game-link-orange:hover {
+  color: #ffc04d;
+}
+
+/* Mod gallery */
+.mod-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.mod-gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border: 1px solid var(--border-mid);
+  background: var(--bg-inset);
+  padding: 3px;
+}
+
+.mod-gallery-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+}
+
+/* Mod list on home page */
+.mod-home-list {
+  margin-top: 6px;
+  margin-left: 16px;
+}
+
+.mod-home-item {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.mod-home-item .mod-game {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.mod-home-item .mod-name {
+  color: var(--text-secondary);
+}
+
+.mod-home-item .mod-link {
+  color: #f5a623;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.mod-home-item .mod-link:hover {
+  color: #ffc04d;
+}
+
+.mod-home-item .mod-downloads {
+  color: var(--text-muted);
+  font-size: 10px;
 }
 
 /* ============================================
@@ -525,14 +688,14 @@ body {
    ============================================ */
 
 .sidebar-section {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .sidebar-section h3 {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--border-mid);
   color: var(--text-primary);
   text-transform: uppercase;
@@ -541,13 +704,12 @@ body {
 }
 
 .sidebar-list {
-  background: var(--bg-inset);
+  background: var(--bg-panel);
   border: 1px solid var(--border-mid);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-item {
-  padding: 10px 12px;
+  padding: 5px 10px;
   border-bottom: 1px solid var(--border-mid);
   transition: background 0.1s ease;
 }
@@ -563,7 +725,7 @@ body {
 .sidebar-item-breadcrumb {
   font-size: 10px;
   color: var(--text-muted);
-  margin-bottom: 3px;
+  margin-bottom: 1px;
   font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
 }
 
@@ -577,14 +739,28 @@ body {
 }
 
 .sidebar-item-breadcrumb .sep {
-  margin: 0 4px;
+  margin: 0 3px;
   color: var(--text-muted);
 }
 
+.sidebar-item-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.3;
+}
+
+.sidebar-item-meta {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  flex-shrink: 0;
+}
+
 .sidebar-item-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .sidebar-item-title a {
@@ -597,21 +773,14 @@ body {
   color: var(--accent-hover);
 }
 
-.sidebar-item-meta {
-  font-size: 10px;
-  color: var(--text-muted);
-  margin-top: 4px;
-  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
-}
-
 .sidebar-more {
-  padding: 10px 12px;
+  padding: 4px 10px;
   text-align: center;
   border-top: 1px solid var(--border-mid);
 }
 
 .sidebar-more a {
-  font-size: 11px;
+  font-size: 9px;
   color: var(--text-muted);
   text-decoration: none;
   text-transform: uppercase;
@@ -1170,6 +1339,62 @@ a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+
+.contact-content {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-mid);
+  padding: 25px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-content p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  padding: 12px 16px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-mid);
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  font-size: 13px;
+}
+
+.contact-item .contact-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 80px;
+}
+
+.contact-item a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.contact-item a:hover {
+  color: var(--accent-hover);
 }
 
 /* ============================================
