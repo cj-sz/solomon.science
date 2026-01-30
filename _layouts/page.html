@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="page-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+    {% if page.tech or page.status %}
+    <div class="page-meta">
+      {% if page.status %}<span>Status: {{ page.status }}</span>{% endif %}
+      {% if page.tech %} &bull; Tech: {{ page.tech | join: ", " }}{% endif %}
+    </div>
+    {% endif %}
+  </div>
+  
+  <div class="page-content">
+    {{ content }}
+  </div>
+</div>
+

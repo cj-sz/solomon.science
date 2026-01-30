@@ -1,5 +1,5 @@
 ---
-layout: project
+layout: page
 title: Erga Deum
 subtitle: Turn-Based Card Battler Combat System
 permalink: /projects/erga-deum

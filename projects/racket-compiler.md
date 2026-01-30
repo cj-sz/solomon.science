@@ -1,5 +1,5 @@
 ---
-layout: project
+layout: page
 title: Racket Compiler
 subtitle: Interpreter and Compiler for a Racket Subset
 permalink: /projects/racket-compiler

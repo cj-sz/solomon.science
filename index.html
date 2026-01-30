@@ -3,100 +3,103 @@ layout: default
 title: Home
 ---
 
-<div class="main-layout">
-  <!-- Main Column -->
-  <div class="main-column">
+<div class="main-container">
+  <!-- Left Column -->
+  <div class="left-column">
     
-    <!-- Profile Section with About Me integrated -->
-    <div class="profile-section-no-border">
-      <div class="profile-image-container">
-        <img src="/assets/images/me.jpg" alt="Caleb Solomon" class="profile-image">
-      </div>
-      <div class="profile-info">
-        <h1>Caleb Solomon</h1>
-        <!-- About Me content integrated here -->
-        <div class="about-inline">
+    <!-- About Section -->
+    <div class="tile">
+      <div class="about-section">
+        <div class="about-content">
+          <h2>About Me</h2>
           <p>
-            I am a senior undergraduate student at the University of Maryland pursuing a dual-degree in Computer Science and Neuroscience. I previously completed exchange at Kyoto University in Spring 2025.
+            My name is Caleb Solomon. I am a senior undergraduate student at the University of Maryland pursuing a dual-degree in Computer Science and Neuroscience. I previously completed exchange at Kyoto University in Spring 2025.
           </p>
+          <br>
           <p>
-            Professionally, I'm interested in systems and low-level programming, compilers, and 
-            the intersection of computation and cognition. I am currently working on language processing research at UMD in  
-            <a href="https://sites.google.com/view/www-jjpurcell-com/home/about-me">Dr. Jeremy Purcell's</a> lab, where I lead development
-            on an upcoming open source package for lexical analysis. I previously interned as an AI Engineer for ScaleAI designing automated
-            LLM output evaluation pipelines.
+            Professionally, I'm interested in systems and low-level programming, compilers, and the intersection of computation and cognition. I am currently working on language processing research at UMD in <a href="https://sites.google.com/view/www-jjpurcell-com/home/about-me">Dr. Jeremy Purcell's</a> lab, where I lead development on an upcoming open source package for lexical analysis. I previously interned as an AI Engineer for ScaleAI designing automated LLM output evaluation pipelines.
           </p>
+          <br>
           <p>
-            I'm currently learning Japanese and love to travel (so far, 11 countries across 3 continents). In my spare time I enjoy reading (mostly sci-fi and fantasy), game design, and training.
+            I'm currently learning Japanese and love to travel (so far, 11 countries across 3 continents). In my spare time I enjoy reading (mostly sci-fi and fantasy), game design, and training. You find more of the projects I'm working on throughout this site, as well as on my Github, linked below.
           </p>
-          <p>
-            This site is currently a <b>work-in-progress</b>.
-          </p>
-        </div>
-        
-        <!-- Quick Links -->
-        <div class="profile-links">
-          <a href="https://github.com/cj-sz" class="profile-link">GitHub</a>
-          <a href="https://linkedin.com/in/calebjsolomon" class="profile-link">LinkedIn</a>
-          <a href="{{ '/contact' | relative_url }}" class="profile-link">Contact</a>
+          <div class="about-links">
+            <a href="https://github.com/cj-sz">github</a>
+            <a href="https://linkedin.com/in/calebjsolomon">linkedin</a>
+            <a href="{{ '/contact' | relative_url }}">contact</a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Research Section -->
-    <div id="research" class="tech-section">
-      <h2>Research</h2>
-      <div class="tech-list">
+    <div id="research" class="tile">
+      <h2 class="tile-header">Research</h2>
+      <div class="item-list">
         
-        <div class="tech-list-item">
-          <span class="title"><a href="{{ '/research/neural-tuning-of-reading' | relative_url }}">Neural Tuning of Reading Lab</a></span>
-          <span class="tags"> :: Python, R, MATLAB</span>
-          <div class="description">
-            Currently leading software development in Dr. Jeremy Purcell's lab for the Sublexical Toolkit, an upcoming open source language analysis package. Some of my most impactful technical contributions include automated data collection, validation, and preprocessing pipelines (used to scale the dataset from 20,000 to 40,000+ words), ongoing backend refactoring from R to Python, and running technical analyses for upcoming publications.
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title"><a href="{{ '/research/neural-tuning-of-reading' | relative_url }}">Neural Tuning of Reading Lab</a></span>
+            <span class="item-tags">Python, R, MATLAB</span>
           </div>
+          <div class="item-description">
+            I currently lead a team of undergraduate researchers in software development, advised by Dr. Jeremy Purcell. I primarily develop the Sublexical Toolkit, an upcoming open source language analysis package (R and Python). I also run technical analyses for upcoming publications.
+          </div>
+          <br>
+          <div class="item-description">Some of my most impactful technical contributions:</div>
+          <br>
+          <div class="item-description">- An automated data collection, validation, and preprocessing pipeline written in Python, which involved webscraping and parsing tens of thousands of words from several accredited dictionaries.</div>
+          <div class="item-description">- Scaling the Toolkit's dataset from 20,000 to 40,000+ words.</div>
+          <div class="item-description">- Refactoring the Toolkit's backend from R to Python.</div>
         </div>
 
       </div>
     </div>
 
     <!-- Projects Section -->
-    <div id="projects" class="tech-section">
-      <h2>Projects</h2>
-      <div class="tech-list">
+    <div id="projects" class="tile">
+      <h2 class="tile-header">Projects</h2>
+      <div class="item-list">
         
-        <div class="tech-list-item">
-          <span class="title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
-          <span class="tags"> :: Unity, C#</span>
-          <div class="description">My current game development project, a turn-based 5v5 card battler featuring an intricate combat system and dynamic character interactions. I'll be documenting my progress here through devlogs as I build.</div>
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
+            <span class="item-tags">Unity, C#</span>
+          </div>
+          <div class="item-description">My current game development project, a turn-based 5v5 card battler featuring an intricate combat system and dynamic character interactions. I'll be documenting my progress here through devlogs as I build.</div>
         </div>
 
-        <div class="tech-list-item">
-          <span class="title"><a href="{{ '/projects/racket-compiler' | relative_url }}">Racket Compiler</a></span>
-          <span class="tags"> :: Racket, x86 Assembly</span>
-          <div class="description">Interpreter and compiler written in Racket supporting a subset of the Racket language features, targeting x86 assembly. Built for my undergraduate compilers course (CMSC430). I can't share the code publicly, but can provide access upon request.</div>
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title"><a href="{{ '/projects/racket-compiler' | relative_url }}">Racket Compiler</a></span>
+            <span class="item-tags">Racket, x86 Assembly</span>
+          </div>
+          <div class="item-description">Interpreter and compiler written in Racket supporting a subset of the Racket language features, targeting x86 assembly. Built for my undergraduate compilers course (CMSC430). I can't share the code publicly, but can provide access upon request.</div>
         </div>
 
-        <div class="tech-list-item">
-          <span class="title"><a href="{{ '/projects/game-mods' | relative_url }}">Game Mods</a></span>
-          <span class="tags"> :: Lua, JavaScript</span>
-          <div class="description">I've developed several mods for the games Factorio and Startup Company, written in Lua and JavaScript, respectively.</div>
-          <div class="mod-home-list">
-            <div class="mod-home-item">
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title"><a href="{{ '/projects/game-mods' | relative_url }}">Game Mods</a></span>
+            <span class="item-tags">Lua, JavaScript</span>
+          </div>
+          <div class="item-description">I've developed several mods for the games Factorio and Startup Company, written in Lua and JavaScript, respectively.</div>
+          <div class="mod-list">
+            <div class="mod-item">
               <span class="mod-game">(Factorio)</span>
-              <span class="mod-name">CJ's QoL Research</span>
-              <a href="https://mods.factorio.com/mod/CJs_QoL_Research_Ver1" class="mod-link" target="_blank">link</a>
+              <span>CJ's QoL Research</span>
+              <a href="https://mods.factorio.com/mod/CJs_QoL_Research_Ver1" class="mod-link">link</a>
               <span class="mod-downloads">50,000+ downloads</span>
             </div>
-            <div class="mod-home-item">
+            <div class="mod-item">
               <span class="mod-game">(Factorio)</span>
-              <span class="mod-name">CJ's Infinite Ores</span>
-              <a href="https://mods.factorio.com/mod/CJsInfiniteOres" class="mod-link" target="_blank">link</a>
+              <span>CJ's Infinite Ores</span>
+              <a href="https://mods.factorio.com/mod/CJsInfiniteOres" class="mod-link">link</a>
               <span class="mod-downloads">5,000+ downloads</span>
             </div>
-            <div class="mod-home-item">
+            <div class="mod-item">
               <span class="mod-game">(Startup Company)</span>
-              <span class="mod-name">Boss Suite (modpack)</span>
-              <a href="https://github.com/cj-sz/BossSuite" class="mod-link" target="_blank">link</a>
+              <span>Boss Suite (modpack)</span>
+              <a href="https://github.com/cj-sz/BossSuite" class="mod-link">link</a>
             </div>
           </div>
         </div>
@@ -106,40 +109,40 @@ title: Home
 
   </div>
 
-  <!-- Sidebar - Recent Posts -->
-  <div class="sidebar">
-    <div id="posts" class="sidebar-section">
-      <h3>Recent Posts</h3>
-      <div class="sidebar-list">
+  <!-- Right Column - Recent Posts -->
+  <div class="right-column">
+    <div class="sidebar-tile">
+      <h3 class="sidebar-header">Recent Blog Posts</h3>
+      <div class="post-list">
         
         {% for post in site.posts limit:6 %}
-        <div class="sidebar-item">
+        <div class="post-item">
           {% if post.categories.size > 0 %}
-          <div class="sidebar-item-breadcrumb">
+          <div class="post-category">
             {% for cat in post.categories %}{{ cat }}{% unless forloop.last %}<span class="sep">›</span>{% endunless %}{% endfor %}
           </div>
           {% endif %}
-          <div class="sidebar-item-row">
-            <div class="sidebar-item-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
-            <div class="sidebar-item-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+          <div class="post-row">
+            <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+            <span class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></span>
           </div>
         </div>
         {% endfor %}
 
         {% if site.posts.size == 0 %}
-        <div class="sidebar-item">
-          <div class="sidebar-item-row">
-            <div class="sidebar-item-meta">—</div>
-            <div class="sidebar-item-title">No posts yet</div>
+        <div class="post-item">
+          <div class="post-row">
+            <span class="post-date">—</span>
+            <span class="post-title">No posts yet</span>
           </div>
         </div>
         {% endif %}
         
-        <div class="sidebar-more">
-          <a href="{{ '/blog' | relative_url }}">View All →</a>
-        </div>
+      </div>
+      <div class="sidebar-more">
+        <a href="{{ '/blog' | relative_url }}">view all →</a>
       </div>
     </div>
   </div>
-  
+
 </div>

@@ -1,5 +1,5 @@
 ---
-layout: project
+layout: page
 title: Neural Tuning of Reading Lab
 subtitle: Language Processing & Computational Neuroscience Research
 permalink: /research/neural-tuning-of-reading
