@@ -1,152 +1,121 @@
 ---
 layout: page
 title: Racket Compiler
-subtitle: Interpreter and Compiler for a Racket Subset
+subtitle: Interpreter and Compiler for a Racket Subset Targeting x86-64
 permalink: /projects/racket-compiler
-tech: [Racket, x86 Assembly]
+tech: [Racket, x86-64 Assembly, C, NASM]
 status: Complete
 ---
 
-An interpreter and compiler written in Racket supporting a subset of the Racket language features, targeting x86 assembly. Built for my undergraduate compilers course (CMSC430) at the University of Maryland.
+A compiler and interpreter written in Racket that targets x86-64 native machine code, built across four progressively complex stages for my undergraduate compilers course (CMSC430) at the University of Maryland. The final compiler supports 10 data types, 30 primitive operations, variadic functions, case-lambda dispatch, heap allocation, and a C runtime for I/O.
 
-## Overview
+## Compilation Pipeline
 
-The project implements both an interpreter and a compiler for a progressively extended subset of Racket. The compiler generates x86-64 assembly that gets linked with a C runtime for I/O and memory management. The implementation follows a staged approach where each project added new language features while maintaining backwards compatibility.
+The compiler transforms Racket source code into native executables through a multi-stage pipeline. S-expressions are parsed into an abstract syntax tree, which is then lowered to x86-64 assembly instructions using the a86 DSL. The assembled output is linked with a C runtime that provides heap initialization, byte-level I/O, and formatted value printing.
 
-## Implemented Features
+<div class="pipeline-grid">
+  <div class="pipeline-box pb-source">
+    <span class="box-label">Source</span>
+    <span class="box-sub">(.rkt)</span>
+  </div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-box pb-parser">
+    <span class="box-label">Parser</span>
+    <span class="box-sub">parse.rkt</span>
+  </div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-box pb-ast">
+    <span class="box-label">AST</span>
+    <span class="box-sub">ast.rkt</span>
+  </div>
+</div>
 
-### Data Types
+<div style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; margin:0;">
+  <div></div><div></div><div></div><div></div>
+  <div style="text-align:center; font-size:18px; color:#888; padding:6px 0;">↓</div>
+</div>
 
-The language supports a variety of data types with tagged representations at the assembly level:
+<div class="pipeline-grid row2">
+  <div class="pipeline-box pb-exe">
+    <span class="box-label">Executable</span>
+    <span class="box-sub">+ C runtime</span>
+  </div>
+  <div class="pipeline-arrow">←</div>
+  <div class="pipeline-box pb-asm">
+    <span class="box-label">x86-64 ASM</span>
+    <span class="box-sub">NASM</span>
+  </div>
+  <div class="pipeline-arrow">←</div>
+  <div class="pipeline-box pb-compile">
+    <span class="box-label">Compiler</span>
+    <span class="box-sub">compile.rkt</span>
+  </div>
+</div>
 
-- **Integers**: Arbitrary-precision integers with overflow handling
-- **Booleans**: `#t` and `#f` with proper truthiness semantics (only `#f` is falsy)
-- **Characters**: Full Unicode support with codepoint validation
-- **Strings**: Immutable string literals and mutable string construction
-- **Lists**: Proper cons cells with `car`, `cdr`, `cons`, and empty list
-- **Boxes**: Single-value mutable containers
-- **Vectors**: Fixed-size mutable arrays with bounds checking
-- **Void and EOF**: Special values for side-effecting operations and input termination
+## Compiler Evolution
 
-### Primitive Operations
+The project was built incrementally across four stages, each introducing significant new capabilities while maintaining backwards compatibility with all previous features. The codebase grew from under 400 lines to over 2,600 lines of Racket and C combined.
 
-The compiler implements numerous primitive operations across arity levels:
+![Compiler Evolution](/assets/images/compiler/compiler_evolution.png)
 
-**Nullary Operations (Op0)**:
-- `read-byte`, `peek-byte`: Byte-level input
-- `void`: Returns the void value
+**Dupe+** introduced the foundation: integer and boolean literals, unary primitives (`add1`, `sub1`, `zero?`, `abs`, `not`, negation), and conditional expressions including `if`, `cond`, and `case`.
 
-**Unary Operations (Op1)**:
-- Arithmetic: `add1`, `sub1`, `zero?`
-- Type predicates: `char?`, `empty?`, `cons?`, `box?`, `vector?`, `string?`, `eof-object?`
-- Conversions: `integer->char`, `char->integer`
-- Accessors: `car`, `cdr`, `unbox`, `vector-length`, `string-length`
-- I/O: `write-byte`
-- Allocation: `box`
+**Fraud+** added state and environment management: local variable bindings via `let` and `let*`, multi-argument functions, binary arithmetic (`+`, `-`, `<`, `=`), n-ary operations, character and I/O support (`read-byte`, `write-byte`, `peek-byte`), and `begin` for sequencing side effects. This stage introduced the compilation environment (`CEnv`) for tracking variable positions on the stack.
 
-**Binary Operations (Op2)**:
-- Arithmetic: `+`, `-`, `<`, `=`
-- Comparison: `eq?`
-- Construction: `cons`, `make-vector`, `make-string`
-- Access: `vector-ref`, `string-ref`
+**Knock+** (Project 5) was the largest jump in complexity. It bundled several course languages together: heap-allocated data structures from Hustle and Hoax (cons cells, boxes, vectors, strings), named function definitions and calls from Iniquity, tail-call optimization from Jig, and pattern matching from Knock with eight pattern types (`Var`, `Lit`, `Conj`, `Box`, `Cons`, `List`, `Vect`, `Pred`). The C runtime grew substantially to handle value printing for all heap types.
 
-**Ternary Operations (Op3)**:
-- Mutation: `vector-set!`
+**Iniquity+** (the final project) extended the function system with advanced dispatch: variadic functions with rest parameters that dynamically construct cons lists on the heap, `case-lambda` for multi-arity dispatch across different clause bodies, and `apply` for calling functions with list arguments. This stage added arity checking via the `r11` register and removed pattern matching to focus the compiler on function dispatch complexity.
 
-### Control Flow
+## Language Feature Growth
 
-- **Conditionals**: Full `if` expressions with proper short-circuit evaluation
-- **Sequencing**: `begin` for sequential side effects
-- **Local Binding**: `let` expressions for variable introduction
+![Feature Growth](/assets/images/compiler/feature_growth.png)
 
-### Functions
+## Type System
 
-The function system supports multiple calling conventions:
+All values are represented as tagged 64-bit words. The low bits encode type information, allowing the runtime to distinguish types without separate metadata. Immediate values (integers, characters, booleans, void, eof, empty list) are stored directly in registers and on the stack. Heap-allocated types (boxes, cons cells, vectors, strings) use pointer tagging, where the low 3 bits of a heap pointer are XORed with the type tag.
 
-**Plain Functions**: Fixed-arity functions with exact argument count checking at runtime.
+![Type Tagging Scheme](/assets/images/compiler/type_tagging.png)
 
-**Rest Parameter Functions**: Functions that accept a minimum number of arguments with excess arguments collected into a list. The compiler dynamically constructs the rest list on the heap at call time.
+Integers are shifted left by 4 bits, giving them a `0000` tag pattern. Characters are shifted left by 5 bits with a `01000` tag. The remaining immediate types each have unique bit patterns that don't collide with any shifted value. This design allows single-instruction type checks using bitwise AND and comparison.
 
-**Case-Lambda**: Multi-arity function dispatch allowing a single function name to handle different argument counts with different implementations.
+## Code Generation Analysis
 
-**Apply**: Supports the `apply` form for calling functions with a list of arguments, enabling higher-order programming patterns.
+Different source constructs expand to vastly different amounts of x86-64 instructions. The instruction counts below were obtained by counting assembly instruction nodes in each match clause of `compile-ops.rkt` and `compile.rkt`, including type assertion instructions (each assertion emits 4 instructions: Mov, And, Cmp, Jne).
 
-### Memory Management
+![Code Generation Density](/assets/images/compiler/codegen_density.png)
 
-The compiler uses a simple heap-based allocation strategy:
-- Heap pointer passed via `rdi` register from C runtime
-- Cons cells, boxes, vectors, and strings allocated on heap
-- Tagged pointers distinguish heap-allocated types
-- Automatic padding for string alignment
+The most instruction-dense constructs are variadic function entry (`FunRest`, 32 instructions) and `apply` (24 instructions). `FunRest` must check arity, then loop over excess stack arguments to construct a cons list on the heap bottom-up. `apply` traverses a cons list at runtime, pushing each car onto the stack, counting into `r11`, and jumping to the target. By contrast, simple operations like `add1` compile to just 6 instructions (4 for the type assertion + Add + implicit setup).
 
-### Error Handling
+## Memory Layout
 
-Runtime type checking with informative error messages:
-- Arity checking for function calls
-- Type assertions for primitive operations
-- Bounds checking for vector and string access
-- Codepoint validation for character conversion
+Heap-allocated types have varying memory footprints. Cons cells are a fixed 16 bytes (two 64-bit words for car and cdr). Vectors and strings carry a length word followed by their elements, with strings using 4-byte character slots padded to even alignment.
 
-## Architecture
+![Heap Memory Footprint](/assets/images/compiler/memory_layout.png)
 
-### Compilation Pipeline
+## Final Compiler Capabilities
 
-1. **Parsing**: S-expressions parsed into AST structures using pattern matching
-2. **Interpretation**: Reference interpreter for semantic specification
-3. **Compilation**: AST lowered to a86 assembly DSL
-4. **Assembly**: a86 library generates x86-64 machine code
-5. **Linking**: Compiled code linked with C runtime for I/O
+The final compiler (Iniquity+) supports a substantial subset of Racket with 10 data types, 30 primitive operations, 6 control flow forms, and 5 function calling conventions.
 
-### Key Components
+**Supported Data Types**: Integers, booleans, characters, strings, cons pairs, boxes (mutable single-value containers), vectors (fixed-size mutable arrays), void, EOF, and the empty list.
 
-- **ast.rkt**: AST definitions using prefab structs for all expression types
-- **parse.rkt**: Parser transforming S-expressions to AST
-- **interp.rkt**: Reference interpreter with environment-passing style
-- **compile.rkt**: Main compilation logic with pattern matching on AST
-- **compile-ops.rkt**: Primitive operation compilation with type checking
-- **types.rkt**: Type tags and bit manipulation constants
+**Function Types**:
+- *Plain functions*: Fixed-arity with exact argument count checking
+- *Rest-parameter functions*: Accept a minimum number of arguments with extras collected into a heap-allocated list
+- *Case-lambda*: Multiple clauses with different arities, dispatched at runtime
+- *Apply*: Spreads a list into individual function arguments by traversing cons cells and pushing values onto the stack
 
-### Runtime System
+**Primitive Operations**: 30 operations across four arity levels, including arithmetic, comparisons, type predicates, type conversions, data structure construction and access, bounds-checked vector/string indexing, and byte-level I/O.
 
-The C runtime provides:
-- Heap allocation and initialization
-- Byte-level I/O (`read_byte`, `peek_byte`, `write_byte`)
-- Error handling (`raise_error`)
-- Value printing with proper Racket formatting
+**Runtime Safety**: Comprehensive type assertions before every primitive operation, arity checking for all function calls, bounds checking for vector and string access, and Unicode codepoint validation for character conversion.
 
-## Technical Details
+## Implementation Highlights
 
-### Register Usage
+**Heap-allocated rest parameters**: When a rest-parameter function receives extra arguments, the compiler emits a loop that pops values from the stack and constructs a cons list bottom-up on the heap, linking each cell to the previous one via tagged pointers.
 
-- `rax`: Primary accumulator, return value
-- `rbx`: Heap pointer (callee-saved)
-- `rsp`: Stack pointer
-- `rdi`: Argument passing from C
-- `r8-r10`: Scratch registers for binary/ternary operations
-- `r11`: Argument count for variadic functions
-- `r15`: Stack alignment padding (callee-saved)
+**Case-lambda dispatch**: The compiler generates code that jumps to each clause's label, checks the arity, and falls through to the next clause on mismatch. Each clause is compiled as an independent function body with its own stack frame management.
 
-### Type Tagging
-
-Values use tagged pointer representation:
-- Low bits encode type information
-- Integer shift for unboxing arithmetic
-- Pointer tags for heap-allocated types
-- Immediate tags for characters, booleans, void, eof, empty list
-
-### Stack Management
-
-- Dynamic stack padding for C ABI alignment
-- Proper callee-saved register preservation
-- Environment variables pushed in reverse order for efficient lookup
-
-## Libraries Used
-
-- **a86**: x86-64 assembly DSL for Racket (course library)
-- **Racket match**: Pattern matching for AST dispatch
-- **C stdlib**: Runtime support for I/O and memory
+**Dynamic stack padding**: Before calling C runtime functions, the compiler saves `rsp & 0b1000` into `r15` and subtracts it from `rsp`, guaranteeing 16-byte alignment. After the call returns, `r15` is added back to restore the original stack pointer.
 
 ## Code Availability
 
-Due to academic integrity policies, I can't share the code publicly. However, I can provide access upon request for employment or collaboration purposes.
-
+Due to university academic integrity requirements, the source code is not publicly available. Access can be provided upon request for employment or collaboration purposes.
