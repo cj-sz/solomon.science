@@ -1,0 +1,59 @@
+<!-- Word Frequency Distribution (SUBTLEX-US) -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 620 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Word Frequency Distribution (SUBTLEX-US)">
+  <style>
+    .fd-title  { font: 600 14px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .fd-axis   { font: 400 11px 'IBM Plex Mono', monospace; fill: #888888; }
+    .fd-tick   { font: 400 10px 'IBM Plex Mono', monospace; fill: #888888; }
+    .fd-val    { font: 500 9px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+    .grid-line { stroke: #2a2a2a; stroke-width: 1; }
+  </style>
+
+  <text x="310" y="24" text-anchor="middle" class="fd-title">Word Frequency Distribution (SUBTLEX-US)</text>
+
+  <text x="16" y="165" text-anchor="middle" transform="rotate(-90,16,165)" class="fd-axis">Number of Words</text>
+
+  <!-- Grid: y=44..270 = 226px for 10000 -->
+  <line x1="65" y1="270" x2="570" y2="270" class="grid-line"/>
+  <line x1="65" y1="225" x2="570" y2="225" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="65" y1="180" x2="570" y2="180" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="65" y1="135" x2="570" y2="135" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="65" y1="90" x2="570" y2="90" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="65" y1="44" x2="570" y2="44" class="grid-line" stroke-dasharray="3,3"/>
+
+  <text x="58" y="274" text-anchor="end" class="fd-tick">0</text>
+  <text x="58" y="229" text-anchor="end" class="fd-tick">2,000</text>
+  <text x="58" y="184" text-anchor="end" class="fd-tick">4,000</text>
+  <text x="58" y="139" text-anchor="end" class="fd-tick">6,000</text>
+  <text x="58" y="94" text-anchor="end" class="fd-tick">8,000</text>
+  <text x="58" y="48" text-anchor="end" class="fd-tick">10,000</text>
+
+  <text x="310" y="300" text-anchor="middle" class="fd-axis">SUBTLEX-US Frequency (log scale)</text>
+
+  <!-- 226px / 10000 = 0.0226 px/unit. bar width=65 -->
+  <!-- 1-9: 555 => 13px -->
+  <text x="140" y="288" text-anchor="middle" class="fd-tick">1-9</text>
+  <rect x="108" y="257" width="65" height="13" fill="#E8A838" class="bar-grow delay-1"/>
+  <text x="140" y="251" text-anchor="middle" class="fd-val">555</text>
+
+  <!-- 10-99: 9252 => 209px -->
+  <text x="230" y="288" text-anchor="middle" class="fd-tick">10-99</text>
+  <rect x="198" y="61" width="65" height="209" fill="#E8A838" class="bar-grow delay-2"/>
+  <text x="230" y="55" text-anchor="middle" class="fd-val">9,252</text>
+
+  <!-- 100-999: 9903 => 224px -->
+  <text x="320" y="288" text-anchor="middle" class="fd-tick">100-999</text>
+  <rect x="288" y="46" width="65" height="224" fill="#f5a623" class="bar-grow delay-3"/>
+  <text x="320" y="40" text-anchor="middle" class="fd-val">9,903</text>
+
+  <!-- 1000-9999: 2313 => 52px -->
+  <text x="410" y="288" text-anchor="middle" class="fd-tick">1K-10K</text>
+  <rect x="378" y="218" width="65" height="52" fill="#E8A838" class="bar-grow delay-4"/>
+  <text x="410" y="212" text-anchor="middle" class="fd-val">2,313</text>
+
+  <!-- 10000+: 489 => 11px -->
+  <text x="500" y="288" text-anchor="middle" class="fd-tick">10K+</text>
+  <rect x="468" y="259" width="65" height="11" fill="#E8A838" class="bar-grow delay-5"/>
+  <text x="500" y="253" text-anchor="middle" class="fd-val">489</text>
+</svg>
+</div>

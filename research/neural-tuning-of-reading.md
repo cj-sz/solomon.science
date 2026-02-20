@@ -7,13 +7,11 @@ tech: [Python, R, MATLAB]
 status: Ongoing
 ---
 
-I currently lead a team of undergraduate researchers in software development at the Neural Tuning of Reading Lab, advised by [Dr. Jeremy Purcell](https://sites.google.com/view/www-jjpurcell-com/home/about-me) at the University of Maryland. My work focuses on developing computational tools for linguistic analysis and running technical analyses for upcoming publications on reading and language processing.
+I lead a team of undergraduate researchers in software engineering and NLP tool development at the Neural Tuning of Reading Lab, advised by [Dr. Jeremy Purcell](https://sites.google.com/view/www-jjpurcell-com/home/about-me) at the University of Maryland. My work centers on building computational linguistics pipelines for analyzing spelling-sound relationships, developing open source tooling for the research community, and running technical analyses for upcoming publications on reading and language processing.
 
 ## Research Focus
 
-At a broad level, the Neural Tuning of Reading lab is interested in exploring the mechanisms of the brain's processing of written and spoken language (primarily English and Spanish).
-
-The lab investigates how neural mechanisms tune to spelling-sound relationships during reading acquisition. A core concept is the study of phonographeme mappings at different grain sizes (phoneme-grapheme, onset-rime, syllable level) and how these interact during reading. English is an opaque orthography, meaning spelling-sound mappings are inconsistent, which makes it a particularly interesting case study for understanding reading acquisition and processing.
+The Neural Tuning of Reading lab investigates how neural mechanisms tune to spelling-sound relationships during reading acquisition. A core focus is the computational modeling of phonographeme mappings -- the systematic correspondences between phonemes (speech sounds) and graphemes (letter sequences) -- at multiple linguistic grain sizes (phoneme-grapheme, onset-rime, syllable level). English is an opaque orthography, meaning spelling-sound mappings are inconsistent, which makes it a particularly rich domain for building NLP tools that quantify and analyze these irregularities.
 
 Key research areas include:
 - Orthography-phonology coupling in the brain
@@ -23,17 +21,63 @@ Key research areas include:
 
 ## The Sublexical Toolkit
 
-My primary development contribution is the Sublexical Toolkit, an upcoming open source language analysis package available in both R and Python. The toolkit provides researchers with comprehensive measures for analyzing spelling-sound relationships at multiple grain sizes.
+My primary engineering contribution is the [Sublexical Toolkit](/research/sublexical-toolkit), an upcoming open source language analysis package available in both R and Python. The toolkit provides researchers with comprehensive measures for analyzing spelling-sound relationships at multiple grain sizes.
 
 ### Technical Contributions
 
-Some of my most impactful technical contributions to the toolkit:
+My most impactful technical contributions to the toolkit involve building the computational linguistics infrastructure from the ground up:
 
-- **Automated Data Pipeline**: Built an automated data collection, validation, and preprocessing pipeline in Python. This involved webscraping and parsing tens of thousands of words from several accredited dictionaries, handling edge cases in linguistic data, and ensuring data quality across multiple sources.
+- **NLP Data Pipeline**: Built an end-to-end data ingestion and processing pipeline in Python that tokenizes words into phoneme-grapheme mapping units, resolves ambiguous segmentations, and produces structured representations suitable for downstream probability computation. This involved webscraping and parsing tens of thousands of words from several accredited dictionaries, handling edge cases in linguistic data, and ensuring data quality across multiple sources.
 
-- **Dataset Expansion**: Scaled the Toolkit's dataset from 20,000 to 40,000+ words, significantly expanding the scope of analyses researchers can perform.
+- **Phonographeme Probability Engine**: Engineered the system that computes mapping and probability tables across syllabic positions and grain sizes -- effectively a specialized language model for sublexical structure. The engine processes each word through syllabification (Maximum Onset Principle), segments it into phoneme-grapheme units, and accumulates positional frequency and probability statistics.
 
-- **Backend Refactoring**: Refactored the Toolkit's backend from R to Python, improving performance and maintainability while preserving the existing R interface for users who prefer it.
+- **Dataset Expansion**: Scaled the Toolkit's dataset from 20,000 to 40,000+ words during the webscraping phase, ultimately curating a 22,474-word master list after deduplication and pronunciation conflict resolution.
+
+- **Backend Refactoring**: Refactored the Toolkit's computational backend from R to Python, improving performance and maintainability while preserving the existing R interface for users who prefer it.
+
+### Multi-Level Word Decomposition
+
+The toolkit parses each word at multiple linguistic grain sizes simultaneously. The diagram below illustrates how a single word flows through the pipeline -- from raw letters to structured phoneme-grapheme, onset-rime, and onset-nucleus-coda representations.
+
+{% include ntr/word_decomposition.svg.html %}
+
+This multi-level decomposition is the foundation of the toolkit's 80+ derived measures. Each grain size captures different aspects of spelling-sound structure, and the probability engine computes positional statistics at every level.
+
+### Data Curation Pipeline
+
+Building a research-quality dataset required significant data engineering. The pipeline below shows the journey from raw dictionary scrapes to the curated master word list.
+
+{% include ntr/data_curation_pipeline.svg.html %}
+
+Each stage involved custom tooling: the webscraper handled three different dictionary formats, the tokenizer resolved ambiguous phoneme-grapheme alignments, and the conflict resolution system flagged 1,380 pronunciation variants for manual review.
+
+### Reverse Mapping: Pseudoword Spelling
+
+One of the toolkit's most novel capabilities is `pw_spell` -- a reverse phoneme-to-grapheme mapping function that generates plausible English spellings from phoneme sequences. This supports research on pseudoword spelling, where participants' spelling choices reveal their internalized sublexical knowledge.
+
+{% include ntr/pseudoword_example.svg.html %}
+
+The function selects graphemes probabilistically based on the toolkit's learned positional frequency tables, producing spellings that reflect real English orthographic patterns.
+
+### Dataset Characteristics
+
+The toolkit's 22,512-word vocabulary spans a wide range of word structures and frequency levels. The following visualizations were generated from the toolkit's master sublexical unit spreadsheet.
+
+{% include ntr/syllable_distribution.svg.html %}
+
+Two-syllable words dominate the dataset (43.5%), with single-syllable and three-syllable words forming the next largest groups. Words with 6+ syllables are rare in English and account for less than 0.3% of the vocabulary.
+
+{% include ntr/pg_unit_distribution.svg.html %}
+
+Phoneme-grapheme unit counts follow a roughly normal distribution centered around 5-6 units per word. This reflects the average complexity of English spelling-sound correspondences in the toolkit's vocabulary.
+
+{% include ntr/frequency_distribution.svg.html %}
+
+Word frequencies from the SUBTLEX-US corpus show the expected Zipfian pattern -- most words in the dataset occur relatively infrequently in natural language, while a small number of high-frequency words (10K+) account for the bulk of everyday usage.
+
+### Toolkit Guide
+
+I authored a comprehensive LaTeX reference document (the Toolkit Guide) that serves as the primary documentation for the toolkit's measures, grain sizes, datasets, and functions. The guide covers the full taxonomy of 80+ derived measures, explains the syllabic position encoding scheme, and provides usage examples for both the R and Python interfaces.
 
 ### Available Measures
 
@@ -79,15 +123,25 @@ The project includes several analysis tools written in R:
 
 Output tables cover syllable-initial, syllable-medial, syllable-final, word-initial, and word-final positions for frequency, PG, and GP measures.
 
-## Publications
+## Publications & Presentations
 
-Technical analyses I've run support upcoming publications including work on pseudoword spelling and insights into sublexical representations and lexical interactions. These studies examine how measures of onset/rime consistency relate to lexical skill compared to phonographeme-level measures.
+- **Poster** presented at the **2023 Society for Neuroscience (SfN)** conference on the NTR Orthogonalization Library
+- **Poster** presented at the **2025 Society for the Neurobiology of Language (SNL)** conference on the Sublexical Toolkit (with Brooks as co-author)
+- Technical analyses I've run support upcoming publications including work on pseudoword spelling and insights into sublexical representations and lexical interactions. These studies examine how measures of onset/rime consistency relate to lexical skill compared to phonographeme-level measures.
+
+### SfN 2023 — NTR Orthogonalization Library
+
+![SfN 2023 Poster — Identifying an orthogonalized list of written words for an fMRI multi-voxel pattern analysis study]({{ '/assets/images/posts/ntr/sfn_2023_poster.png' | relative_url }})
+
+### SNL 2025 — Sublexical Toolkit & Pseudoword Spelling
+
+![SNL 2025 Poster — Reading Skill Predicts Variability in Pseudoword Pronunciation: An Experience-Dependent Basis for Neuroimaging Analyses]({{ '/assets/images/posts/ntr/snl_2025_poster.png' | relative_url }})
 
 ## Technologies
 
 The lab's computational work spans multiple languages and tools:
 
-- **Python**: Data pipelines, webscraping, backend development, preprocessing
+- **Python**: NLP pipelines, tokenization, webscraping, data validation, backend development
 - **R/RMarkdown**: Statistical analysis, probability calculations, visualization
 - **MATLAB**: Orthogonalization algorithms, matrix operations, fMRI study design tools
-
+- **LaTeX**: Toolkit Guide documentation

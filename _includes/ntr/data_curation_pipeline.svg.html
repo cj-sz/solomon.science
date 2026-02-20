@@ -1,0 +1,227 @@
+<!-- Data Curation Pipeline: From Raw Scrapes to 22,474 Curated Words -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data curation pipeline showing five stages from web scraping to final dataset">
+  <style>
+    .dp-title  { font: 600 13px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .dp-stage  { font: 600 11px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .dp-detail { font: 400 9px  'IBM Plex Mono', monospace; fill: #bbbbbb; }
+    .dp-stat   { font: 700 10px 'IBM Plex Mono', monospace; }
+    .dp-num    { font: 700 15px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .dp-arrow  { fill: #555555; }
+    .dp-line   { stroke: #444444; stroke-width: 1.5; }
+    .dp-icon   { font: 400 16px 'IBM Plex Mono', monospace; }
+  </style>
+
+  <!-- Title -->
+  <text x="340" y="22" text-anchor="middle" class="dp-title">Data Curation Pipeline</text>
+
+  <!-- ============================================================ -->
+  <!-- Stage 1: Web Scraping -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-1">
+    <!-- Card background -->
+    <rect x="10" y="44" width="112" height="160" rx="6" fill="#9F1D20" fill-opacity="0.15"
+          stroke="#9F1D20" stroke-width="1.5"/>
+
+    <!-- Stage number circle -->
+    <circle cx="66" cy="68" r="14" fill="#9F1D20"/>
+    <text x="66" y="73" text-anchor="middle" class="dp-num">1</text>
+
+    <!-- Icon: stacked layers (web sources) -->
+    <g transform="translate(50,90)">
+      <rect x="0" y="0" width="32" height="6" rx="2" fill="#9F1D20" opacity="0.7"/>
+      <rect x="2" y="8" width="28" height="6" rx="2" fill="#9F1D20" opacity="0.5"/>
+      <rect x="4" y="16" width="24" height="6" rx="2" fill="#9F1D20" opacity="0.35"/>
+    </g>
+
+    <!-- Label -->
+    <text x="66" y="128" text-anchor="middle" class="dp-stage">Web</text>
+    <text x="66" y="140" text-anchor="middle" class="dp-stage">Scraping</text>
+
+    <!-- Details -->
+    <text x="66" y="158" text-anchor="middle" class="dp-detail">CMU Dict</text>
+    <text x="66" y="169" text-anchor="middle" class="dp-detail">Cambridge Dict</text>
+    <text x="66" y="180" text-anchor="middle" class="dp-detail">SUBTLEX-US</text>
+
+    <!-- Stat -->
+    <text x="66" y="192" text-anchor="middle" class="dp-stat" fill="#9F1D20">40,000+ words</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <g class="card-slide delay-2">
+    <line x1="126" y1="124" x2="140" y2="124" class="dp-line"/>
+    <polygon points="140,120 148,124 140,128" class="dp-arrow"/>
+    <!-- Funnel taper indicator -->
+    <line x1="126" y1="110" x2="140" y2="114" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+    <line x1="126" y1="138" x2="140" y2="134" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Stage 2: Tokenization & Parsing -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-2">
+    <rect x="148" y="44" width="112" height="160" rx="6" fill="#C45A2C" fill-opacity="0.15"
+          stroke="#C45A2C" stroke-width="1.5"/>
+
+    <circle cx="204" cy="68" r="14" fill="#C45A2C"/>
+    <text x="204" y="73" text-anchor="middle" class="dp-num">2</text>
+
+    <!-- Icon: brackets / parse tree -->
+    <g transform="translate(184,88)">
+      <text x="20" y="14" text-anchor="middle" fill="#C45A2C" opacity="0.8"
+            style="font: 700 20px 'IBM Plex Mono', monospace;">{&thinsp;}</text>
+    </g>
+
+    <text x="204" y="128" text-anchor="middle" class="dp-stage">Tokenization</text>
+    <text x="204" y="140" text-anchor="middle" class="dp-stage">&amp; Parsing</text>
+
+    <text x="204" y="158" text-anchor="middle" class="dp-detail">Phoneme IDs</text>
+    <text x="204" y="169" text-anchor="middle" class="dp-detail">Grapheme seg.</text>
+    <text x="204" y="180" text-anchor="middle" class="dp-detail">IPA standard.</text>
+
+    <text x="204" y="196" text-anchor="middle" class="dp-stat" fill="#C45A2C">3 source formats</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <g class="card-slide delay-3">
+    <line x1="264" y1="124" x2="278" y2="124" class="dp-line"/>
+    <polygon points="278,120 286,124 278,128" class="dp-arrow"/>
+    <line x1="264" y1="112" x2="278" y2="116" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+    <line x1="264" y1="136" x2="278" y2="132" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Stage 3: Syllabification -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-3">
+    <rect x="286" y="44" width="112" height="160" rx="6" fill="#E8A838" fill-opacity="0.15"
+          stroke="#E8A838" stroke-width="1.5"/>
+
+    <circle cx="342" cy="68" r="14" fill="#E8A838"/>
+    <text x="342" y="73" text-anchor="middle" class="dp-num" fill="#1a1a1a">3</text>
+
+    <!-- Icon: syllable break dots -->
+    <g transform="translate(322,90)">
+      <circle cx="6" cy="6" r="5" fill="#E8A838" opacity="0.7"/>
+      <rect x="14" y="4" width="4" height="4" rx="1" fill="#E8A838" opacity="0.4"/>
+      <circle cx="26" cy="6" r="5" fill="#E8A838" opacity="0.5"/>
+      <rect x="34" y="4" width="4" height="4" rx="1" fill="#E8A838" opacity="0.4"/>
+    </g>
+
+    <text x="342" y="128" text-anchor="middle" class="dp-stage">Syllabi-</text>
+    <text x="342" y="140" text-anchor="middle" class="dp-stage">fication</text>
+
+    <text x="342" y="158" text-anchor="middle" class="dp-detail">Max. Onset</text>
+    <text x="342" y="169" text-anchor="middle" class="dp-detail">Principle</text>
+    <text x="342" y="180" text-anchor="middle" class="dp-detail">Boundaries set</text>
+
+    <text x="342" y="196" text-anchor="middle" class="dp-stat" fill="#E8A838">1-7 syllables</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <g class="card-slide delay-4">
+    <line x1="402" y1="124" x2="416" y2="124" class="dp-line"/>
+    <polygon points="416,120 424,124 416,128" class="dp-arrow"/>
+    <line x1="402" y1="114" x2="416" y2="117" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+    <line x1="402" y1="134" x2="416" y2="131" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Stage 4: Conflict Resolution -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-4">
+    <rect x="424" y="44" width="112" height="160" rx="6" fill="#3B6EA5" fill-opacity="0.15"
+          stroke="#3B6EA5" stroke-width="1.5"/>
+
+    <circle cx="480" cy="68" r="14" fill="#3B6EA5"/>
+    <text x="480" y="73" text-anchor="middle" class="dp-num">4</text>
+
+    <!-- Icon: merge/resolve arrows -->
+    <g transform="translate(464,88)">
+      <line x1="0" y1="4" x2="14" y2="10" stroke="#3B6EA5" stroke-width="2" opacity="0.7"/>
+      <line x1="0" y1="16" x2="14" y2="10" stroke="#3B6EA5" stroke-width="2" opacity="0.7"/>
+      <line x1="14" y1="10" x2="30" y2="10" stroke="#3B6EA5" stroke-width="2" opacity="0.7"/>
+      <circle cx="30" cy="10" r="3" fill="#3B6EA5" opacity="0.6"/>
+    </g>
+
+    <text x="480" y="128" text-anchor="middle" class="dp-stage">Conflict</text>
+    <text x="480" y="140" text-anchor="middle" class="dp-stage">Resolution</text>
+
+    <text x="480" y="158" text-anchor="middle" class="dp-detail">Pron. variants</text>
+    <text x="480" y="169" text-anchor="middle" class="dp-detail">Duplicate audit</text>
+    <text x="480" y="180" text-anchor="middle" class="dp-detail">Manual review</text>
+
+    <text x="480" y="196" text-anchor="middle" class="dp-stat" fill="#3B6EA5">1,380 resolved</text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <g class="card-slide delay-5">
+    <line x1="540" y1="124" x2="554" y2="124" class="dp-line"/>
+    <polygon points="554,120 562,124 554,128" class="dp-arrow"/>
+    <line x1="540" y1="116" x2="554" y2="119" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+    <line x1="540" y1="132" x2="554" y2="129" stroke="#444" stroke-width="0.7" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Stage 5: Final Dataset -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-5">
+    <rect x="562" y="44" width="108" height="160" rx="6" fill="#6BA368" fill-opacity="0.18"
+          stroke="#6BA368" stroke-width="2"/>
+
+    <circle cx="616" cy="68" r="14" fill="#6BA368"/>
+    <text x="616" y="73" text-anchor="middle" class="dp-num" fill="#1a1a1a">5</text>
+
+    <!-- Icon: checkmark badge -->
+    <g transform="translate(602,88)">
+      <circle cx="14" cy="10" r="10" fill="#6BA368" opacity="0.25"/>
+      <polyline points="8,10 12,14 20,6" fill="none" stroke="#6BA368" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <text x="616" y="128" text-anchor="middle" class="dp-stage">Final</text>
+    <text x="616" y="140" text-anchor="middle" class="dp-stage">Dataset</text>
+
+    <text x="616" y="158" text-anchor="middle" class="dp-detail">Curated &amp;</text>
+    <text x="616" y="169" text-anchor="middle" class="dp-detail">validated</text>
+
+    <text x="616" y="190" text-anchor="middle" class="dp-stat" fill="#6BA368">22,474 words</text>
+    <text x="616" y="202" text-anchor="middle" class="dp-stat" fill="#6BA368">80+ measures</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Bottom: funnel volume bar (data reduction visualization) -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-5">
+    <text x="340" y="240" text-anchor="middle" class="dp-detail">Data volume through pipeline</text>
+
+    <!-- Graduated reduction bar -->
+    <rect x="10"  y="250" width="112" height="10" rx="3" fill="#9F1D20" opacity="0.5"/>
+    <rect x="148" y="251" width="112" height="8"  rx="3" fill="#C45A2C" opacity="0.5"/>
+    <rect x="286" y="252" width="112" height="6"  rx="3" fill="#E8A838" opacity="0.5"/>
+    <rect x="424" y="253" width="112" height="5"  rx="2" fill="#3B6EA5" opacity="0.5"/>
+    <rect x="562" y="253" width="108" height="4"  rx="2" fill="#6BA368" opacity="0.6"/>
+
+    <!-- Volume labels -->
+    <text x="66"  y="274" text-anchor="middle" class="dp-detail">~40,000</text>
+    <text x="616" y="274" text-anchor="middle" class="dp-detail">22,474</text>
+
+    <!-- Reduction arrow -->
+    <line x1="100" y1="280" x2="580" y2="280" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+    <polygon points="580,277 588,280 580,283" fill="#555"/>
+    <text x="340" y="293" text-anchor="middle" style="font: 400 8.5px 'IBM Plex Mono', monospace; fill: #666;">
+      44% reduction through curation
+    </text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Bottom legend: source badges -->
+  <!-- ============================================================ -->
+  <g class="card-slide delay-5">
+    <text x="340" y="322" text-anchor="middle" style="font: 400 8px 'IBM Plex Mono', monospace; fill: #555;">
+      Sources: CMU Pronouncing Dictionary &middot; Cambridge Dictionary &middot; SUBTLEX-US
+    </text>
+  </g>
+
+</svg>
+</div>

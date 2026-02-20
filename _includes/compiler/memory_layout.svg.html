@@ -1,0 +1,91 @@
+<!-- Heap Memory Footprint per Data Type -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heap Memory Footprint per Data Type">
+  <style>
+    .ml-title  { font: 600 15px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .ml-label  { font: 400 11px 'IBM Plex Mono', monospace; fill: #d0d0d0; text-anchor: end; }
+    .ml-val    { font: 500 10px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+    .ml-axis   { font: 400 10px 'IBM Plex Mono', monospace; fill: #888888; }
+    .ml-legend { font: 400 10px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+    .grid-line { stroke: #2a2a2a; stroke-width: 1; }
+  </style>
+
+  <text x="350" y="24" text-anchor="middle" class="ml-title">Heap Memory Footprint per Data Type</text>
+
+  <text x="420" y="388" text-anchor="middle" class="ml-axis">Bytes Allocated on Heap</text>
+
+  <!-- Grid: chart x=180..660 = 480px for 80 bytes => 6px/byte -->
+  <line x1="180" y1="38" x2="180" y2="330" class="grid-line"/>
+  <line x1="240" y1="38" x2="240" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="300" y1="38" x2="300" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="360" y1="38" x2="360" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="420" y1="38" x2="420" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="480" y1="38" x2="480" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="540" y1="38" x2="540" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="600" y1="38" x2="600" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="660" y1="38" x2="660" y2="330" class="grid-line" stroke-dasharray="3,3"/>
+
+  <text x="180" y="352" text-anchor="middle" class="ml-axis">0</text>
+  <text x="240" y="352" text-anchor="middle" class="ml-axis">10</text>
+  <text x="300" y="352" text-anchor="middle" class="ml-axis">20</text>
+  <text x="360" y="352" text-anchor="middle" class="ml-axis">30</text>
+  <text x="420" y="352" text-anchor="middle" class="ml-axis">40</text>
+  <text x="480" y="352" text-anchor="middle" class="ml-axis">50</text>
+  <text x="540" y="352" text-anchor="middle" class="ml-axis">60</text>
+  <text x="600" y="352" text-anchor="middle" class="ml-axis">70</text>
+  <text x="660" y="352" text-anchor="middle" class="ml-axis">80</text>
+
+  <!-- 6px per byte. bar height=24, spacing=8 -->
+  <!-- String (8 chars): metadata=8, payload=32 => total 40B -->
+  <text x="174" y="58" class="ml-label">String (8 chars)</text>
+  <rect x="180" y="44" width="48" height="24" rx="2" fill="#E8A838" class="bar-grow-h delay-1"/>
+  <rect x="228" y="44" width="192" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-1"/>
+  <text x="426" y="60" class="ml-val">40 B</text>
+
+  <!-- String (4 chars): metadata=8, payload=16 => 24B -->
+  <text x="174" y="90" class="ml-label">String (4 chars)</text>
+  <rect x="180" y="76" width="48" height="24" rx="2" fill="#E8A838" class="bar-grow-h delay-2"/>
+  <rect x="228" y="76" width="96" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-2"/>
+  <text x="330" y="92" class="ml-val">24 B</text>
+
+  <!-- String (1 char): metadata=8, payload=4 => 12B -->
+  <text x="174" y="122" class="ml-label">String (1 char)</text>
+  <rect x="180" y="108" width="48" height="24" rx="2" fill="#E8A838" class="bar-grow-h delay-3"/>
+  <rect x="228" y="108" width="24" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-3"/>
+  <text x="258" y="124" class="ml-val">12 B</text>
+
+  <!-- Vector (n=8): metadata=8, payload=64 => 72B -->
+  <text x="174" y="154" class="ml-label">Vector (n=8)</text>
+  <rect x="180" y="140" width="48" height="24" rx="2" fill="#E8A838" class="bar-grow-h delay-4"/>
+  <rect x="228" y="140" width="384" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-4"/>
+  <text x="618" y="156" class="ml-val">72 B</text>
+
+  <!-- Vector (n=4): metadata=8, payload=32 => 40B -->
+  <text x="174" y="186" class="ml-label">Vector (n=4)</text>
+  <rect x="180" y="172" width="48" height="24" rx="2" fill="#E8A838" class="bar-grow-h delay-5"/>
+  <rect x="228" y="172" width="192" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-5"/>
+  <text x="426" y="188" class="ml-val">40 B</text>
+
+  <!-- Vector (n=1): metadata=8, payload=8 => 16B -->
+  <text x="174" y="218" class="ml-label">Vector (n=1)</text>
+  <rect x="180" y="204" width="48" height="24" rx="2" fill="#E8A838" class="bar-grow-h delay-6"/>
+  <rect x="228" y="204" width="48" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-6"/>
+  <text x="282" y="220" class="ml-val">16 B</text>
+
+  <!-- Cons cell: 16B total (no metadata word, just car+cdr) -->
+  <text x="174" y="250" class="ml-label">Cons cell</text>
+  <rect x="180" y="236" width="96" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-7"/>
+  <text x="282" y="252" class="ml-val">16 B</text>
+
+  <!-- Box: 8B -->
+  <text x="174" y="282" class="ml-label">Box</text>
+  <rect x="180" y="268" width="48" height="24" rx="2" fill="#3B6EA5" class="bar-grow-h delay-8"/>
+  <text x="234" y="284" class="ml-val">8 B</text>
+
+  <!-- Legend -->
+  <rect x="280" y="310" width="10" height="8" fill="#E8A838"/>
+  <text x="294" y="318" class="ml-legend">Metadata (length word)</text>
+  <rect x="440" y="310" width="10" height="8" fill="#3B6EA5"/>
+  <text x="454" y="318" class="ml-legend">Payload (data)</text>
+</svg>
+</div>

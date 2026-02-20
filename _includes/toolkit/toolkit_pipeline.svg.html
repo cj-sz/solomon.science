@@ -1,0 +1,90 @@
+<!-- Sublexical Toolkit Data Pipeline -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sublexical Toolkit Data Pipeline">
+  <style>
+    .tp-title  { font: 600 15px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .tp-stage  { font: 500 12px 'IBM Plex Mono', monospace; }
+    .tp-box    { font: 400 11px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+    .tp-arrow  { fill: #888888; }
+  </style>
+
+  <text x="360" y="28" text-anchor="middle" class="tp-title">Sublexical Toolkit Data Pipeline</text>
+
+  <!-- Stage 1 label -->
+  <text x="30" y="60" class="tp-stage" fill="#3B6EA5">Stage 1: Data Collection &amp; Curation (Python)</text>
+
+  <!-- Stage 1 boxes -->
+  <g class="card-slide delay-1">
+    <rect x="30" y="72" width="160" height="60" rx="6" fill="rgba(59,110,165,0.1)" stroke="#3B6EA5" stroke-width="1.5"/>
+    <text x="110" y="98" text-anchor="middle" class="tp-box">Dictionary</text>
+    <text x="110" y="114" text-anchor="middle" class="tp-box">Webscraping</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g class="card-slide delay-2">
+    <text x="210" y="107" fill="#888" font-size="18" text-anchor="middle">&#8594;</text>
+  </g>
+
+  <g class="card-slide delay-2">
+    <rect x="230" y="72" width="160" height="60" rx="6" fill="rgba(45,134,89,0.1)" stroke="#2D8659" stroke-width="1.5"/>
+    <text x="310" y="98" text-anchor="middle" class="tp-box">Validation &amp;</text>
+    <text x="310" y="114" text-anchor="middle" class="tp-box">Deduplication</text>
+  </g>
+
+  <g class="card-slide delay-3">
+    <text x="410" y="107" fill="#888" font-size="18" text-anchor="middle">&#8594;</text>
+  </g>
+
+  <g class="card-slide delay-3">
+    <rect x="430" y="72" width="170" height="60" rx="6" fill="rgba(232,168,56,0.1)" stroke="#E8A838" stroke-width="1.5"/>
+    <text x="515" y="98" text-anchor="middle" class="tp-box">Master List</text>
+    <text x="515" y="114" text-anchor="middle" class="tp-box" fill="#E8A838">(22,474 words)</text>
+  </g>
+
+  <!-- Down arrow from Master List to Stage 2 -->
+  <g class="card-slide delay-4">
+    <text x="515" y="152" fill="#888" font-size="18" text-anchor="middle">&#8595;</text>
+  </g>
+
+  <!-- Stage 2 label -->
+  <text x="30" y="180" class="tp-stage" fill="#7B4EA8">Stage 2: Linguistic Analysis &amp; Feature Extraction (R + Python)</text>
+
+  <!-- Stage 2 boxes -->
+  <g class="card-slide delay-5">
+    <rect x="30" y="192" width="160" height="60" rx="6" fill="rgba(59,110,165,0.1)" stroke="#3B6EA5" stroke-width="1.5"/>
+    <text x="110" y="218" text-anchor="middle" class="tp-box">Syllabification</text>
+    <text x="110" y="234" text-anchor="middle" class="tp-box">&amp; PG Mapping</text>
+  </g>
+
+  <g class="card-slide delay-6">
+    <text x="210" y="227" fill="#888" font-size="18" text-anchor="middle">&#8594;</text>
+  </g>
+
+  <g class="card-slide delay-6">
+    <rect x="230" y="192" width="160" height="60" rx="6" fill="rgba(196,90,44,0.1)" stroke="#C45A2C" stroke-width="1.5"/>
+    <text x="310" y="218" text-anchor="middle" class="tp-box">Probability</text>
+    <text x="310" y="234" text-anchor="middle" class="tp-box">Table Generation</text>
+  </g>
+
+  <g class="card-slide delay-7">
+    <text x="410" y="227" fill="#888" font-size="18" text-anchor="middle">&#8594;</text>
+  </g>
+
+  <g class="card-slide delay-7">
+    <rect x="430" y="192" width="170" height="60" rx="6" fill="rgba(123,78,168,0.1)" stroke="#7B4EA8" stroke-width="1.5"/>
+    <text x="515" y="218" text-anchor="middle" class="tp-box">Multi-grain</text>
+    <text x="515" y="234" text-anchor="middle" class="tp-box">Measure Extraction</text>
+  </g>
+
+  <g class="card-slide delay-8">
+    <text x="620" y="227" fill="#888" font-size="18" text-anchor="middle">&#8594;</text>
+  </g>
+
+  <g class="card-slide delay-8">
+    <rect x="635" y="192" width="70" height="60" rx="6" fill="rgba(196,90,44,0.1)" stroke="#C45A2C" stroke-width="1.5"/>
+    <text x="670" y="214" text-anchor="middle" class="tp-box" fill="#C45A2C">80+</text>
+    <text x="670" y="228" text-anchor="middle" class="tp-box">Measures</text>
+    <text x="670" y="242" text-anchor="middle" class="tp-box">per Word</text>
+  </g>
+</svg>
+</div>

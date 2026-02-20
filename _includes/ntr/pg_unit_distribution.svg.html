@@ -1,0 +1,93 @@
+<!-- Phoneme-Grapheme Unit Count Distribution -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phoneme-Grapheme Unit Count Distribution">
+  <style>
+    .pg-title  { font: 600 14px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .pg-axis   { font: 400 11px 'IBM Plex Mono', monospace; fill: #888888; }
+    .pg-tick   { font: 400 10px 'IBM Plex Mono', monospace; fill: #888888; }
+    .pg-val    { font: 500 9px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+    .grid-line { stroke: #2a2a2a; stroke-width: 1; }
+  </style>
+
+  <text x="340" y="24" text-anchor="middle" class="pg-title">Phoneme-Grapheme Unit Count per Word (22,512 words)</text>
+
+  <text x="16" y="165" text-anchor="middle" transform="rotate(-90,16,165)" class="pg-axis">Number of Words</text>
+
+  <!-- Grid: chart y=44..270 = 226px for 4500 => 0.0502 px/unit -->
+  <line x1="55" y1="270" x2="650" y2="270" class="grid-line"/>
+  <line x1="55" y1="220" x2="650" y2="220" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="55" y1="170" x2="650" y2="170" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="55" y1="120" x2="650" y2="120" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="55" y1="70" x2="650" y2="70" class="grid-line" stroke-dasharray="3,3"/>
+
+  <!-- Y ticks -->
+  <text x="48" y="274" text-anchor="end" class="pg-tick">0</text>
+  <text x="48" y="224" text-anchor="end" class="pg-tick">1,000</text>
+  <text x="48" y="174" text-anchor="end" class="pg-tick">2,000</text>
+  <text x="48" y="124" text-anchor="end" class="pg-tick">3,000</text>
+  <text x="48" y="74" text-anchor="end" class="pg-tick">4,000</text>
+
+  <text x="350" y="308" text-anchor="middle" class="pg-axis">Phoneme-Grapheme Units per Word</text>
+
+  <!-- Bars: 226px / 4500 = 0.0502 px/unit. bar width=38, gap=4 -->
+  <!-- 1-2: 349 => 18px -->
+  <text x="92" y="290" text-anchor="middle" class="pg-tick">1-2</text>
+  <rect x="73" y="252" width="38" height="18" fill="#2D8659" class="bar-grow delay-1"/>
+  <text x="92" y="247" text-anchor="middle" class="pg-val">349</text>
+
+  <!-- 3: 1986 => 100px -->
+  <text x="134" y="290" text-anchor="middle" class="pg-tick">3</text>
+  <rect x="115" y="170" width="38" height="100" fill="#2D8659" class="bar-grow delay-1"/>
+  <text x="134" y="164" text-anchor="middle" class="pg-val">1,986</text>
+
+  <!-- 4: 3444 => 173px -->
+  <text x="176" y="290" text-anchor="middle" class="pg-tick">4</text>
+  <rect x="157" y="97" width="38" height="173" fill="#2D8659" class="bar-grow delay-2"/>
+  <text x="176" y="91" text-anchor="middle" class="pg-val">3,444</text>
+
+  <!-- 5: 4164 => 209px -->
+  <text x="218" y="290" text-anchor="middle" class="pg-tick">5</text>
+  <rect x="199" y="61" width="38" height="209" fill="#5fb4b4" class="bar-grow delay-2"/>
+  <text x="218" y="55" text-anchor="middle" class="pg-val">4,164</text>
+
+  <!-- 6: 4178 => 210px (peak) -->
+  <text x="260" y="290" text-anchor="middle" class="pg-tick">6</text>
+  <rect x="241" y="60" width="38" height="210" fill="#5fb4b4" class="bar-grow delay-3"/>
+  <text x="260" y="54" text-anchor="middle" class="pg-val">4,178</text>
+
+  <!-- 7: 3133 => 157px -->
+  <text x="302" y="290" text-anchor="middle" class="pg-tick">7</text>
+  <rect x="283" y="113" width="38" height="157" fill="#2D8659" class="bar-grow delay-3"/>
+  <text x="302" y="107" text-anchor="middle" class="pg-val">3,133</text>
+
+  <!-- 8: 2365 => 119px -->
+  <text x="344" y="290" text-anchor="middle" class="pg-tick">8</text>
+  <rect x="325" y="151" width="38" height="119" fill="#2D8659" class="bar-grow delay-4"/>
+  <text x="344" y="145" text-anchor="middle" class="pg-val">2,365</text>
+
+  <!-- 9: 1435 => 72px -->
+  <text x="386" y="290" text-anchor="middle" class="pg-tick">9</text>
+  <rect x="367" y="198" width="38" height="72" fill="#2D8659" class="bar-grow delay-4"/>
+  <text x="386" y="192" text-anchor="middle" class="pg-val">1,435</text>
+
+  <!-- 10: 769 => 39px -->
+  <text x="428" y="290" text-anchor="middle" class="pg-tick">10</text>
+  <rect x="409" y="231" width="38" height="39" fill="#2D8659" class="bar-grow delay-5"/>
+  <text x="428" y="225" text-anchor="middle" class="pg-val">769</text>
+
+  <!-- 11: 418 => 21px -->
+  <text x="470" y="290" text-anchor="middle" class="pg-tick">11</text>
+  <rect x="451" y="249" width="38" height="21" fill="#2D8659" class="bar-grow delay-5"/>
+  <text x="470" y="243" text-anchor="middle" class="pg-val">418</text>
+
+  <!-- 12: 187 => 9px -->
+  <text x="512" y="290" text-anchor="middle" class="pg-tick">12</text>
+  <rect x="493" y="261" width="38" height="9" fill="#2D8659" class="bar-grow delay-6"/>
+  <text x="512" y="255" text-anchor="middle" class="pg-val">187</text>
+
+  <!-- 13+: 74 => 4px -->
+  <text x="554" y="290" text-anchor="middle" class="pg-tick">13+</text>
+  <rect x="535" y="266" width="38" height="4" fill="#2D8659" class="bar-grow delay-6"/>
+  <text x="554" y="260" text-anchor="middle" class="pg-val">74</text>
+</svg>
+</div>

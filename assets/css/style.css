@@ -267,6 +267,38 @@ body {
   object-fit: contain;
 }
 
+/* Poster gallery */
+.poster-gallery {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 4px 16px;
+}
+
+.poster-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.poster-item img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.poster-item a:hover img {
+  border-color: var(--link-color);
+}
+
+.poster-caption {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
 /* Mod sub-items */
 .mod-list {
   margin-top: 6px;
@@ -782,6 +814,168 @@ body {
 
 .footer-text {
   margin-top: 2px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+/* Hidden state before JS fires */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate="slide-left"] {
+  transform: translateX(-32px);
+}
+
+[data-animate="slide-right"] {
+  transform: translateX(32px);
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+/* Visible state after IntersectionObserver triggers */
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays for sequential elements */
+[data-animate][data-delay="1"] { transition-delay: 0.1s; }
+[data-animate][data-delay="2"] { transition-delay: 0.2s; }
+[data-animate][data-delay="3"] { transition-delay: 0.3s; }
+[data-animate][data-delay="4"] { transition-delay: 0.4s; }
+[data-animate][data-delay="5"] { transition-delay: 0.5s; }
+[data-animate][data-delay="6"] { transition-delay: 0.6s; }
+
+/* SVG chart container */
+.svg-chart-wrap {
+  margin: 16px 0;
+}
+
+.svg-chart-wrap svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Animated SVG bars - grow from bottom */
+.svg-chart-wrap .bar-grow {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svg-chart-wrap.is-visible .bar-grow {
+  transform: scaleY(1);
+}
+
+/* Animated SVG bars - grow from left (horizontal) */
+.svg-chart-wrap .bar-grow-h {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svg-chart-wrap.is-visible .bar-grow-h {
+  transform: scaleX(1);
+}
+
+/* SVG line draw animation */
+.svg-chart-wrap .line-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.5s ease;
+}
+
+.svg-chart-wrap.is-visible .line-draw {
+  stroke-dashoffset: 0;
+}
+
+/* SVG dot pop-in */
+.svg-chart-wrap .dot-pop {
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.svg-chart-wrap.is-visible .dot-pop {
+  transform: scale(1);
+}
+
+/* Staggered SVG delays */
+.svg-chart-wrap.is-visible .delay-1 { transition-delay: 0.1s; }
+.svg-chart-wrap.is-visible .delay-2 { transition-delay: 0.2s; }
+.svg-chart-wrap.is-visible .delay-3 { transition-delay: 0.3s; }
+.svg-chart-wrap.is-visible .delay-4 { transition-delay: 0.4s; }
+.svg-chart-wrap.is-visible .delay-5 { transition-delay: 0.5s; }
+.svg-chart-wrap.is-visible .delay-6 { transition-delay: 0.6s; }
+.svg-chart-wrap.is-visible .delay-7 { transition-delay: 0.7s; }
+.svg-chart-wrap.is-visible .delay-8 { transition-delay: 0.8s; }
+.svg-chart-wrap.is-visible .delay-9 { transition-delay: 0.9s; }
+.svg-chart-wrap.is-visible .delay-10 { transition-delay: 1.0s; }
+.svg-chart-wrap.is-visible .delay-11 { transition-delay: 1.1s; }
+.svg-chart-wrap.is-visible .delay-12 { transition-delay: 1.2s; }
+
+/* Row slide-in for table rows */
+.svg-chart-wrap .row-slide {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.svg-chart-wrap.is-visible .row-slide {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card slide-up */
+.svg-chart-wrap .card-slide {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.svg-chart-wrap.is-visible .card-slide {
+  opacity: 1;
+  transform: none;
+}
+
+/* Block scale-in for treemap */
+.svg-chart-wrap .block-scale {
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.svg-chart-wrap.is-visible .block-scale {
+  transform: scale(1);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  .svg-chart-wrap .bar-grow,
+  .svg-chart-wrap .bar-grow-h,
+  .svg-chart-wrap .line-draw,
+  .svg-chart-wrap .dot-pop,
+  .svg-chart-wrap .row-slide,
+  .svg-chart-wrap .card-slide,
+  .svg-chart-wrap .block-scale {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
 }
 
 /* ============================================

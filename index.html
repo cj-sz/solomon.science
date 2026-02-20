@@ -45,7 +45,7 @@ title: Home
             <span class="item-tags">Python, R, MATLAB</span>
           </div>
           <div class="item-description">
-            I currently lead a team of undergraduate researchers in software development, advised by Dr. Jeremy Purcell. I primarily develop the Sublexical Toolkit, an upcoming open source language analysis package (R and Python). I also run technical analyses for upcoming publications.
+            I currently lead a team of undergraduate researchers in software development, advised by Dr. Jeremy Purcell. I primarily develop the <a href="{{ '/research/sublexical-toolkit' | relative_url }}">Sublexical Toolkit</a>, an upcoming open source language analysis package (R and Python). I also run technical analyses for upcoming publications.
           </div>
           <br>
           <div class="item-description">Some of my most impactful technical contributions:</div>
@@ -53,6 +53,20 @@ title: Home
           <div class="item-description">- An automated data collection, validation, and preprocessing pipeline written in Python, which involved webscraping and parsing tens of thousands of words from several accredited dictionaries.</div>
           <div class="item-description">- Scaling the Toolkit's dataset from 20,000 to 40,000+ words.</div>
           <div class="item-description">- Refactoring the Toolkit's backend from R to Python.</div>
+          <div class="poster-gallery">
+            <div class="poster-item">
+              <a href="{{ '/research/neural-tuning-of-reading' | relative_url }}#sfn-2023--ntr-orthogonalization-library">
+                <img src="{{ '/assets/images/posts/ntr/sfn_2023_poster.png' | relative_url }}" alt="SfN 2023 Poster">
+              </a>
+              <span class="poster-caption">SfN 2023 — Orthogonalization Library</span>
+            </div>
+            <div class="poster-item">
+              <a href="{{ '/research/neural-tuning-of-reading' | relative_url }}#snl-2025--sublexical-toolkit--pseudoword-spelling">
+                <img src="{{ '/assets/images/posts/ntr/snl_2025_poster.png' | relative_url }}" alt="SNL 2025 Poster">
+              </a>
+              <span class="poster-caption">SNL 2025 — Pseudoword Spelling</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -62,14 +76,6 @@ title: Home
     <div id="projects" class="tile">
       <h2 class="tile-header">Projects</h2>
       <div class="item-list">
-        
-        <div class="item">
-          <div class="item-header">
-            <span class="item-title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
-            <span class="item-tags">Unity, C#</span>
-          </div>
-          <div class="item-description">My current game development project, a turn-based 5v5 card battler featuring an intricate combat system and dynamic character interactions. I'll be documenting my progress here through devlogs as I build.</div>
-        </div>
 
         <div class="item">
           <div class="item-header">
@@ -77,6 +83,15 @@ title: Home
             <span class="item-tags">Racket, x86 Assembly</span>
           </div>
           <div class="item-description">Interpreter and compiler written in Racket supporting a subset of the Racket language features, targeting x86 assembly. Built for my undergraduate compilers course (CMSC430). I can't share the code publicly, but can provide access upon request.</div>
+          {% include compiler/compiler_evolution.svg.html %}
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
+            <span class="item-tags">Unity, C#</span>
+          </div>
+          <div class="item-description">My current game development project, a turn-based 5v5 card battler featuring an intricate combat system and dynamic character interactions. I'll be documenting my progress here through devlogs as I build.</div>
         </div>
 
         <div class="item">

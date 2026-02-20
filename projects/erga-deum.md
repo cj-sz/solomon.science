@@ -201,10 +201,6 @@ public static class BattleEvents
 }
 ```
 
-## Current Progress
-
-The core battle system is functional with 5 implemented characters (Joseph, The Farmer, Nomad, Mutant Frog, Vulcan). Current focus areas include implementing enemy AI, expanding card effects, and building out the UI. Future plans include an interactive overworld map for character movement between battles.
-
 ## Screenshots
 
 *Screenshots coming soon*

@@ -1,0 +1,82 @@
+<!-- Phonographic Consistency Across Syllabic Positions -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phonographic Consistency Across Syllabic Positions">
+  <style>
+    .sp-title  { font: 600 15px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .sp-axis   { font: 400 11px 'IBM Plex Mono', monospace; fill: #888888; }
+    .sp-tick   { font: 400 10px 'IBM Plex Mono', monospace; fill: #888888; }
+    .sp-val    { font: 500 9px 'IBM Plex Mono', monospace; }
+    .sp-legend { font: 400 10px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+    .grid-line { stroke: #2a2a2a; stroke-width: 1; }
+  </style>
+
+  <text x="350" y="24" text-anchor="middle" class="sp-title">Phonographic Consistency Across Syllabic Positions</text>
+
+  <text x="16" y="175" text-anchor="middle" transform="rotate(-90,16,175)" class="sp-axis">Average Consistency Score</text>
+
+  <!-- Chart area: x=70..660, y=40..290 => 250px for 0-1.0 -->
+  <line x1="70" y1="290" x2="660" y2="290" class="grid-line"/>
+  <line x1="70" y1="240" x2="660" y2="240" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="70" y1="190" x2="660" y2="190" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="70" y1="140" x2="660" y2="140" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="70" y1="90" x2="660" y2="90" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="70" y1="40" x2="660" y2="40" class="grid-line" stroke-dasharray="3,3"/>
+
+  <text x="62" y="294" text-anchor="end" class="sp-tick">0</text>
+  <text x="62" y="244" text-anchor="end" class="sp-tick">0.2</text>
+  <text x="62" y="194" text-anchor="end" class="sp-tick">0.4</text>
+  <text x="62" y="144" text-anchor="end" class="sp-tick">0.6</text>
+  <text x="62" y="94" text-anchor="end" class="sp-tick">0.8</text>
+  <text x="62" y="44" text-anchor="end" class="sp-tick">1.0</text>
+
+  <!-- X labels - 5 positions -->
+  <text x="140" y="310" text-anchor="middle" class="sp-tick">Word-</text>
+  <text x="140" y="322" text-anchor="middle" class="sp-tick">initial</text>
+  <text x="260" y="310" text-anchor="middle" class="sp-tick">Syllable-</text>
+  <text x="260" y="322" text-anchor="middle" class="sp-tick">initial</text>
+  <text x="380" y="310" text-anchor="middle" class="sp-tick">Medial</text>
+  <text x="500" y="310" text-anchor="middle" class="sp-tick">Syllable-</text>
+  <text x="500" y="322" text-anchor="middle" class="sp-tick">final</text>
+  <text x="620" y="310" text-anchor="middle" class="sp-tick">Word-</text>
+  <text x="620" y="322" text-anchor="middle" class="sp-tick">final</text>
+
+  <!-- PG bars (blue): 0.78, 0.72, 0.55, 0.61, 0.68 -->
+  <!-- 250px per 1.0 score. bar width=35 -->
+  <rect x="110" y="95" width="35" height="195" fill="#3B6EA5" class="bar-grow delay-1"/>
+  <text x="128" y="88" text-anchor="middle" class="sp-val" fill="#3B6EA5">0.78</text>
+
+  <rect x="230" y="110" width="35" height="180" fill="#3B6EA5" class="bar-grow delay-2"/>
+  <text x="248" y="103" text-anchor="middle" class="sp-val" fill="#3B6EA5">0.72</text>
+
+  <rect x="350" y="152" width="35" height="138" fill="#3B6EA5" class="bar-grow delay-3"/>
+  <text x="368" y="145" text-anchor="middle" class="sp-val" fill="#3B6EA5">0.55</text>
+
+  <rect x="470" y="138" width="35" height="152" fill="#3B6EA5" class="bar-grow delay-4"/>
+  <text x="488" y="131" text-anchor="middle" class="sp-val" fill="#3B6EA5">0.61</text>
+
+  <rect x="590" y="120" width="35" height="170" fill="#3B6EA5" class="bar-grow delay-5"/>
+  <text x="608" y="113" text-anchor="middle" class="sp-val" fill="#3B6EA5">0.68</text>
+
+  <!-- GP bars (orange): 0.82, 0.76, 0.48, 0.58, 0.71 -->
+  <rect x="150" y="85" width="35" height="205" fill="#E8A838" class="bar-grow delay-1"/>
+  <text x="168" y="78" text-anchor="middle" class="sp-val" fill="#E8A838">0.82</text>
+
+  <rect x="270" y="100" width="35" height="190" fill="#E8A838" class="bar-grow delay-2"/>
+  <text x="288" y="93" text-anchor="middle" class="sp-val" fill="#E8A838">0.76</text>
+
+  <rect x="390" y="170" width="35" height="120" fill="#E8A838" class="bar-grow delay-3"/>
+  <text x="408" y="163" text-anchor="middle" class="sp-val" fill="#E8A838">0.48</text>
+
+  <rect x="510" y="145" width="35" height="145" fill="#E8A838" class="bar-grow delay-4"/>
+  <text x="528" y="138" text-anchor="middle" class="sp-val" fill="#E8A838">0.58</text>
+
+  <rect x="630" y="112" width="35" height="178" fill="#E8A838" class="bar-grow delay-5"/>
+  <text x="648" y="105" text-anchor="middle" class="sp-val" fill="#E8A838">0.71</text>
+
+  <!-- Legend -->
+  <rect x="230" y="342" width="10" height="8" fill="#3B6EA5"/>
+  <text x="244" y="350" class="sp-legend">P&#8594;G (spelling consistency)</text>
+  <rect x="430" y="342" width="10" height="8" fill="#E8A838"/>
+  <text x="444" y="350" class="sp-legend">G&#8594;P (reading consistency)</text>
+</svg>
+</div>

@@ -1,0 +1,82 @@
+<!-- Compiler Evolution: Lines of Code Across Project Stages -->
+<div class="svg-chart-wrap">
+<svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Compiler Evolution: Lines of Code Across Project Stages">
+  <style>
+    .chart-title { font: 600 15px 'IBM Plex Mono', monospace; fill: #ffffff; }
+    .axis-label { font: 400 11px 'IBM Plex Mono', monospace; fill: #888888; }
+    .tick-label { font: 400 10px 'IBM Plex Mono', monospace; fill: #888888; }
+    .bar-label  { font: 500 10px 'IBM Plex Mono', monospace; fill: #f5a623; }
+    .grid-line  { stroke: #2a2a2a; stroke-width: 1; }
+    .legend-text { font: 400 10px 'IBM Plex Mono', monospace; fill: #d0d0d0; }
+  </style>
+
+  <text x="310" y="24" text-anchor="middle" class="chart-title">Compiler Evolution: Lines of Code Across Project Stages</text>
+
+  <!-- Y axis label -->
+  <text x="18" y="170" text-anchor="middle" transform="rotate(-90,18,170)" class="axis-label">Lines of Code</text>
+
+  <!-- Grid lines: chart area y=44..280 = 236px for 3000 units => 0.0787 px/unit -->
+  <line x1="80" y1="280" x2="580" y2="280" class="grid-line"/>
+  <line x1="80" y1="240.7" x2="580" y2="240.7" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="80" y1="201.3" x2="580" y2="201.3" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="80" y1="162" x2="580" y2="162" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="80" y1="122.7" x2="580" y2="122.7" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="80" y1="83.3" x2="580" y2="83.3" class="grid-line" stroke-dasharray="3,3"/>
+  <line x1="80" y1="44" x2="580" y2="44" class="grid-line" stroke-dasharray="3,3"/>
+
+  <!-- Y tick labels: 0, 500, 1000, 1500, 2000, 2500, 3000 -->
+  <text x="72" y="284" text-anchor="end" class="tick-label">0</text>
+  <text x="72" y="244" text-anchor="end" class="tick-label">500</text>
+  <text x="72" y="205" text-anchor="end" class="tick-label">1,000</text>
+  <text x="72" y="166" text-anchor="end" class="tick-label">1,500</text>
+  <text x="72" y="126" text-anchor="end" class="tick-label">2,000</text>
+  <text x="72" y="87" text-anchor="end" class="tick-label">2,500</text>
+  <text x="72" y="48" text-anchor="end" class="tick-label">3,000</text>
+
+  <!-- X tick labels: 3 stages -->
+  <text x="180" y="300" text-anchor="middle" class="tick-label">Dupe+ (P3)</text>
+  <text x="330" y="300" text-anchor="middle" class="tick-label">Fraud+ (P4)</text>
+  <text x="480" y="300" text-anchor="middle" class="tick-label">Knock+ (P5)</text>
+
+  <!-- Bars: Racket (compiler) - dark red #9F1D20 -->
+  <!-- 236px / 3000 = 0.07867 px/unit -->
+  <!-- Dupe+: Racket=332 => 26px, y=280-26=254 -->
+  <rect x="148" y="254" width="30" height="26" fill="#9F1D20" class="bar-grow delay-1"/>
+  <!-- Fraud+: Racket=874 => 69px, y=280-69=211 -->
+  <rect x="298" y="211" width="30" height="69" fill="#9F1D20" class="bar-grow delay-2"/>
+  <!-- Knock+: Racket=1562 => 123px, y=280-123=157 -->
+  <rect x="448" y="157" width="30" height="123" fill="#9F1D20" class="bar-grow delay-3"/>
+
+  <!-- Bars: C (runtime) - gray #555555 -->
+  <!-- Dupe+: C=122 => 10px, y=280-10=270 -->
+  <rect x="183" y="270" width="30" height="10" fill="#555555" class="bar-grow delay-1"/>
+  <!-- Fraud+: C=302 => 24px, y=280-24=256 -->
+  <rect x="333" y="256" width="30" height="24" fill="#555555" class="bar-grow delay-2"/>
+  <!-- Knock+: C=1221 => 96px, y=280-96=184 -->
+  <rect x="483" y="184" width="30" height="96" fill="#555555" class="bar-grow delay-3"/>
+
+  <!-- Combined line: 454, 1176, 2783 -->
+  <!-- 454 => y=280-36=244, 1176 => y=280-93=187, 2783 => y=280-219=61 -->
+  <polyline points="180,244 330,187 480,61"
+    fill="none" stroke="#f5a623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+    class="line-draw"/>
+
+  <!-- Combined dots -->
+  <circle cx="180" cy="244" r="5" fill="#f5a623" class="dot-pop delay-2"/>
+  <circle cx="330" cy="187" r="5" fill="#f5a623" class="dot-pop delay-3"/>
+  <circle cx="480" cy="61" r="5" fill="#f5a623" class="dot-pop delay-4"/>
+
+  <!-- Combined value labels -->
+  <text x="180" y="236" text-anchor="middle" class="bar-label">454</text>
+  <text x="330" y="179" text-anchor="middle" class="bar-label">1,176</text>
+  <text x="480" y="53" text-anchor="middle" class="bar-label">2,783</text>
+
+  <!-- Legend -->
+  <circle cx="320" cy="322" r="4" fill="#f5a623"/>
+  <text x="328" y="326" class="legend-text">Combined</text>
+  <rect x="400" y="318" width="10" height="8" fill="#9F1D20"/>
+  <text x="414" y="326" class="legend-text">Racket</text>
+  <rect x="470" y="318" width="10" height="8" fill="#555555"/>
+  <text x="484" y="326" class="legend-text">C (runtime)</text>
+</svg>
+</div>
