@@ -80,7 +80,39 @@ public void DrawNCards(int n)
 }
 ```
 
-Cards support multiple targeting types (`Self`, `SingleTarget`, `AllEnemies`, `AllAllies`) resolved at play time. The targeting system is decoupled from card logic — a card doesn't know how it will be targeted until the player or AI selects targets, allowing the same card definition to behave differently based on context.
+Cards support multiple targeting types (`Self`, `SingleTarget`, `AllEnemies`, `AllAllies`) resolved at play time. The targeting system is fully decoupled from card logic via a coroutine-based async selection flow — when a card requires a single target, the battle manager yields to a `TargetingManager` that suspends execution until the player clicks a valid target, then resumes card resolution with the selected character:
+
+```csharp
+public void PlayCard(CardView cardView)
+{
+    var card = cardView.cardData;
+    switch (card.GetTargetingType())
+    {
+        case TargetingType.Self:
+            card.ExecCardLogics(currentCharacter);
+            break;
+        case TargetingType.SingleTarget:
+            StartCoroutine(WaitForSingleTargetAndExecute(card, cardView));
+            break;
+        case TargetingType.AllEnemies:
+            card.ExecCardLogics(currentCharacter, null, enemyCharacters);
+            break;
+        case TargetingType.AllAllies:
+            card.ExecCardLogics(currentCharacter, null, playerCharacters);
+            break;
+    }
+}
+
+private IEnumerator WaitForSingleTargetAndExecute(BattleCard card, CardView view)
+{
+    BattleCharacter selected = null;
+    yield return TargetingManager.Instance.SelectTargetAsync(result => selected = result);
+    if (selected != null)
+        card.ExecCardLogics(currentCharacter, selected);
+}
+```
+
+A card doesn't know how it will be targeted until the player or AI selects targets, allowing the same card definition to behave differently based on context.
 
 ## Stat Modifiers
 
@@ -117,7 +149,29 @@ public class StatModifier
 }
 ```
 
-Stats are recalculated on demand whenever the modifier list changes. The computation order is strict: base stat → sum all raw modifiers → sum all percentage modifiers → apply multiplicatively. This guarantees consistent behavior regardless of the order modifiers were applied.
+Stats are recalculated on demand whenever the modifier list changes. The computation order is strict: base stat → sum all raw modifiers → sum all percentage modifiers → apply multiplicatively. This guarantees consistent behavior regardless of the order modifiers were applied:
+
+```csharp
+public void RecalculateStats()
+{
+    Dictionary<Stat, float> rawBonuses = new();
+    Dictionary<Stat, float> percentBonuses = new();
+
+    foreach (StatModifier s in statModifiers)
+    {
+        if (s.modType == ModType.Raw)
+            rawBonuses[s.affectedStat] = rawBonuses.GetValueOrDefault(s.affectedStat) + s.modAmount;
+        else if (s.modType == ModType.Percent)
+            percentBonuses[s.affectedStat] = percentBonuses.GetValueOrDefault(s.affectedStat) + s.modAmount;
+    }
+
+    atk = (int)((correspChar.basicStats.atk + rawBonuses.GetValueOrDefault(Stat.ATK))
+                * (1 + percentBonuses.GetValueOrDefault(Stat.ATK)));
+    def = (int)((correspChar.basicStats.def + rawBonuses.GetValueOrDefault(Stat.DEF))
+                * (1 + percentBonuses.GetValueOrDefault(Stat.DEF)));
+    // ... similar for all stats
+}
+```
 
 ## Damage Calculation
 
@@ -179,6 +233,42 @@ public class BattleStartSelfStatMod : PassiveSkill
 ```
 
 Passive triggers include: battle start, round end, when hit, on death, and when attacking. Characters in position 4 (the fifth slot) also gain access to special "Quattuor" skills — powerful passives that are balanced by requiring you to sacrifice a team slot's positional bonus.
+
+### Reactive & Conditional Passives
+
+Beyond simple event-triggered passives, the system supports reactive passives that dynamically apply and remove modifiers based on runtime conditions. For example, `HPConditionedStatMod` watches for HP changes and toggles a stat modifier on/off depending on whether the character's health crosses a threshold:
+
+```csharp
+[CreateAssetMenu(menuName = "Characters/Passives/Persistent/HP-Conditioned/HP-Conditioned Continuous Stat Mod")]
+public class HPConditionedStatMod : PassiveSkill
+{
+    public ThresholdCondition thresholdCondition;
+    public float threshold;
+    public Stat stat;
+    public ModType modType;
+    public float amount;
+
+    private bool isActive = false;
+    private StatModifier s;
+
+    private void HandleCharacterHPChanged(BattleCharacter c)
+    {
+        if (c != b) return;
+        float t = (thresholdType == ModType.Percent) ? threshold * b.correspChar.basicStats.maxHP : threshold;
+
+        if (ThresholdEvaluator.Evaluate(b.GetHP(), thresholdCondition, t))
+        {
+            if (!isActive) { s = new StatModifier(stat, modType, Duration.Eter, amount, 0); b.AddStatModifier(s); }
+        }
+        else
+        {
+            if (isActive) b.RemoveStatModifier(s);
+        }
+    }
+}
+```
+
+Similarly, `CharacterAttackingStaminaBasedStatMod` scales a modifier's strength by the character's current stamina at the moment of attacking, creating passives whose power fluctuates dynamically throughout a round. `OnAllyDeathSelfStatMod` buffs a character whenever an ally dies, and `BattleStartAllyCountStatMod` conditionally applies bonuses based on team size — enabling "last stand" or "full squad" character archetypes purely through data configuration.
 
 ## Event System
 

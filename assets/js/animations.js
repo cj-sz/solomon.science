@@ -39,10 +39,11 @@
   'use strict';
 
   var phrases = [
-    'systems programmer',
-    'game architect',
+    'low-level programmer',
     'NLP researcher',
-    'relentless builder'
+    'compiler engineer',
+    'game architect',
+    'traveller'
   ];
   var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>/';
   var el = document.getElementById('scramble-text');

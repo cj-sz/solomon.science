@@ -85,8 +85,9 @@ body {
    ============================================ */
 
 .hero-section {
-  padding: 40px 0 30px;
+  padding: 16px 0 30px;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .hero-name {
@@ -101,7 +102,7 @@ body {
   color: var(--text-secondary);
   max-width: 600px;
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
   min-height: 1.6em;
 }
 
@@ -114,6 +115,7 @@ body {
 .hero-links {
   display: flex;
   gap: 20px;
+  justify-content: center;
 }
 
 .hero-links a {
