@@ -3,10 +3,20 @@ layout: default
 title: Home
 ---
 
+<div class="hero-section">
+  <h1 class="hero-name">Caleb Solomon</h1>
+  <p class="hero-tagline"><span id="scramble-text" class="scramble-text"></span></p>
+  <div class="hero-links">
+    <a href="https://github.com/cj-sz">github</a>
+    <a href="https://linkedin.com/in/calebjsolomon">linkedin</a>
+    <a href="{{ '/contact' | relative_url }}">contact</a>
+  </div>
+</div>
+
 <div class="main-container">
   <!-- Left Column -->
   <div class="left-column">
-    
+
     <!-- About Section -->
     <div class="tile">
       <div class="about-section">
@@ -17,18 +27,16 @@ title: Home
           </p>
           <br>
           <p>
-            Professionally, I'm interested in systems and low-level programming, compilers, and the intersection of computation and cognition. I am currently working on language processing research at UMD in <a href="https://sites.google.com/view/www-jjpurcell-com/home/about-me">Dr. Jeremy Purcell's</a> lab, where I lead development on an upcoming open source package for lexical analysis. I previously interned as an AI Engineer for ScaleAI designing automated LLM output evaluation pipelines.
+            I'm interested in systems and low-level programming, high-performance computing, and the intersection of computation and cognition. Currently, I'm working on language processing research at UMD in <a href="https://sites.google.com/view/www-jjpurcell-com/home/about-me">Dr. Jeremy Purcell's</a> lab, where I lead development on an upcoming open source package for lexical analysis. I previously interned as an AI Engineer for ScaleAI designing automated LLM output evaluation pipelines.
           </p>
           <br>
           <p>
-            I'm currently learning Japanese and love to travel (so far, 11 countries across 3 continents). In my spare time I enjoy reading (mostly sci-fi and fantasy), game design, and training. You find more of the projects I'm working on throughout this site, as well as on my Github, linked below.
+            I'm currently learning Japanese and love to travel (so far, 11 countries across 3 continents). In my spare time I enjoy reading (mostly sci-fi and fantasy), game design, and training. You can find more of the projects I'm working on throughout this site and on my Github.
           </p>
           <br>
-          <div class="about-links">
-            <a href="https://github.com/cj-sz">github</a>
-            <a href="https://linkedin.com/in/calebjsolomon">linkedin</a>
-            <a href="{{ '/contact' | relative_url }}">contact</a>
-          </div>
+          <p>
+            I'm seeking a Summer 2026 internship and a full-time software engineering role starting January 2027, especially cleared positions.
+          </p>
         </div>
       </div>
     </div>
@@ -91,7 +99,15 @@ title: Home
             <span class="item-title"><a href="{{ '/projects/erga-deum' | relative_url }}">Erga Deum</a></span>
             <span class="item-tags">Unity, C#</span>
           </div>
-          <div class="item-description">My current game development project, a turn-based 5v5 card battler featuring an intricate combat system and dynamic character interactions. I'll be documenting my progress here through devlogs as I build.</div>
+          <div class="item-description">A turn-based 5v5 card battler built in Unity featuring an event-driven combat engine, dynamic stat modifier system, and 18-class elemental resistance model. Built from scratch with a custom state machine architecture, ScriptableObject-based data pipeline, and extensible passive skill framework.</div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="item-title"><a href="{{ '/projects/league-tool' | relative_url }}">League Tool</a></span>
+            <span class="item-tags">Rust</span>
+          </div>
+          <div class="item-description">A CLI tool for seeding and ranking sports teams based on win percentage and scoring efficiency. Parses game histories from plaintext, computes composite ratings, and tracks seed movement across runs with color-coded delta arrows.</div>
         </div>
 
         <div class="item">
@@ -130,12 +146,12 @@ title: Home
 
   </div>
 
-  <!-- Right Column - Recent Posts -->
+  <!-- Blog sidebar hidden until posts are ready
   <div class="right-column">
     <div class="sidebar-tile">
       <h3 class="sidebar-header">Recent Blog Posts</h3>
       <div class="post-list">
-        
+
         {% for post in site.posts limit:6 %}
         <div class="post-item">
           {% if post.categories.size > 0 %}
@@ -158,12 +174,13 @@ title: Home
           </div>
         </div>
         {% endif %}
-        
+
       </div>
       <div class="sidebar-more">
         <a href="{{ '/blog' | relative_url }}">view all →</a>
       </div>
     </div>
   </div>
+  -->
 
 </div>
