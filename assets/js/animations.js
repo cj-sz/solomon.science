@@ -42,7 +42,7 @@
     'low-level programmer',
     'NLP researcher',
     'compiler engineer',
-    'game architect',
+    'systems programmer',
     'traveller'
   ];
   var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>/';
