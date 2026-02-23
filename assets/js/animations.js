@@ -43,6 +43,7 @@
     'NLP researcher',
     'compiler engineer',
     'systems programmer',
+    'language learner',
     'traveller'
   ];
   var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>/';
