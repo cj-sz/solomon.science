@@ -118,6 +118,6 @@ The final compiler (Iniquity+) supports a substantial subset of Racket with 10 d
 
 **Dynamic stack padding**: Before calling C runtime functions, the compiler saves `rsp & 0b1000` into `r15` and subtracts it from `rsp`, guaranteeing 16-byte alignment. After the call returns, `r15` is added back to restore the original stack pointer.
 
-## Code Availability
+## Code
 
-Due to university academic integrity requirements, the source code is not publicly available. Access can be provided upon request for employment or collaboration purposes.
+Source code is not publicly available due to university academic integrity policy. I can provide access on request.

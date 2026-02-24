@@ -27,6 +27,10 @@
   box-sizing: border-box;
 }
 
+a:visited {
+  color: var(--link-color);
+}
+
 html, body {
   height: 100%;
 }
@@ -145,6 +149,11 @@ body {
 
 .intro-summary p {
   margin: 0;
+}
+
+.intro-summary strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 /* ============================================
