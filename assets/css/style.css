@@ -27,8 +27,18 @@
   box-sizing: border-box;
 }
 
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
 a:visited {
   color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover);
 }
 
 html, body {
